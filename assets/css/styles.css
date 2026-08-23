@@ -4,8 +4,8 @@
      --ink      #1E5864  Azul petróleo · logo, textos, superficies
      --sea      #164652  Petróleo profundo · superficies y gradientes
      --lagoon   #14A0A5  Turquesa      · olas, detalles y "EXPERIENCE"
-     --mango    #ECDABE  Arena         · fondo principal de la identidad
-     --paper    #FFFFFF  Blanco        · espacios, fondos secundarios
+     --mango    #ECDABE  Arena         · acentos y sección destacada de alquiler
+      --paper    #FFFFFF  Blanco        · fondo principal de la identidad
    Tipografía:
      display → 'Fraunces'       (personalidad, títulos)
      cuerpo  → 'Public Sans'    (lectura, UI)
@@ -69,10 +69,8 @@ html{scroll-behavior:smooth; scroll-padding-top:96px}
 body{
   margin:0;
   background:
-    radial-gradient(1200px 640px at 6% -8%, rgba(20,160,165,.15), transparent 55%),
-    radial-gradient(900px 560px at 98% 2%, rgba(255,255,255,.75), transparent 50%),
-    radial-gradient(1100px 720px at 50% 118%, rgba(223,198,157,.5), transparent 60%),
-    var(--mango);
+    radial-gradient(1200px 640px at 6% -8%, rgba(20,160,165,.07), transparent 55%),
+    var(--paper);
   background-attachment:fixed;
   color:var(--ink);
   font-family:'Public Sans',system-ui,sans-serif;
@@ -106,7 +104,7 @@ h1,h2,h3,h4{
 
 .notch{
   position:absolute; width:22px; height:22px; border-radius:50%;
-  background:var(--mango); z-index:3;
+  background:var(--paper); z-index:3;
 }
 .notch.left{left:-11px}
 .notch.right{right:-11px}
@@ -203,16 +201,16 @@ h1,h2,h3,h4{
 .hero-scrim{
   position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    linear-gradient(100deg, rgba(13,41,48,.94) 4%, rgba(17,54,63,.86) 32%, rgba(20,60,70,.55) 58%, rgba(22,70,82,.18) 84%),
-    linear-gradient(0deg, var(--sea) 0%, rgba(22,70,82,0) 26%);
+    linear-gradient(92deg, rgba(9,32,39,.84) 0%, rgba(12,42,51,.64) 20%, rgba(15,52,62,.34) 42%, rgba(16,56,66,.08) 64%, transparent 78%),
+    linear-gradient(0deg, rgba(22,70,82,.5) 0%, transparent 24%);
 }
 .hero-grain{
-  position:absolute;inset:0;opacity:.55;pointer-events:none;mix-blend-mode:overlay;z-index:1;
-  background-image:radial-gradient(circle at 15% 20%, rgba(46,192,197,.32), transparent 45%),
-                    radial-gradient(circle at 85% 75%, rgba(20,160,165,.24), transparent 50%);
+  position:absolute;inset:0;opacity:.26;pointer-events:none;mix-blend-mode:overlay;z-index:1;
+  background-image:radial-gradient(circle at 15% 20%, rgba(46,192,197,.18), transparent 45%),
+                    radial-gradient(circle at 85% 75%, rgba(20,160,165,.12), transparent 50%);
 }
 .hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;opacity:.4;z-index:1;
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.22;z-index:1;
   background-image:radial-gradient(rgba(255,255,255,.16) 1px, transparent 1.4px);
   background-size:26px 26px;
   mask-image:radial-gradient(ellipse 80% 60% at 30% 20%, #000 40%, transparent 90%);
@@ -233,14 +231,16 @@ h1,h2,h3,h4{
   display:inline-flex;align-items:center;gap:9px;
   font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
   color:#7FE0E3; border:1px solid rgba(127,224,227,.4); padding:8px 15px;border-radius:100px;
-  background:rgba(20,160,165,.14);
-  backdrop-filter:blur(6px);
+  background:rgba(13,41,48,.38);
+  backdrop-filter:blur(8px);
+  text-shadow:0 1px 10px rgba(8,30,37,.5);
 }
 .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--lagoon-bright);animation:pulse 1.8s infinite;box-shadow:0 0 0 0 rgba(46,192,197,.5)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 .hero h1{
   font-size:clamp(2.7rem,6vw,4.6rem); line-height:1.01; margin:22px 0 20px; font-weight:600;
   letter-spacing:-.03em;
+  text-shadow:0 2px 30px rgba(8,30,37,.55), 0 1px 4px rgba(8,30,37,.35);
 }
 .hero h1 em{font-style:italic;color:var(--lagoon-bright);font-weight:500}
 .hero p.lead{font-size:clamp(1.02rem,1.4vw,1.14rem);line-height:1.65;color:rgba(255,255,255,.8);max-width:520px;margin:0 0 34px;text-shadow:0 2px 16px rgba(13,41,48,.5)}
@@ -332,11 +332,22 @@ h1,h2,h3,h4{
 .section{padding:clamp(72px,9vw,116px) 0; position:relative}
 .section.dim{
   background:
-    radial-gradient(800px 360px at 92% 0%, rgba(255,255,255,.5), transparent 60%),
-    radial-gradient(700px 400px at 2% 100%, rgba(20,160,165,.12), transparent 60%),
-    var(--paper-dim);
+    radial-gradient(800px 360px at 92% 0%, rgba(255,255,255,.7), transparent 60%),
+    radial-gradient(700px 400px at 2% 100%, rgba(20,160,165,.08), transparent 60%),
+    #F3F7F7;
   box-shadow:inset 0 1px 0 var(--line-soft), inset 0 -1px 0 var(--line-soft);
 }
+.section.dim .notch{background:#F3F7F7}
+/* Sección arena — reservada para "Alquiler más populares" en inicio */
+.section.sand{
+  background:
+    radial-gradient(800px 360px at 92% 0%, rgba(255,255,255,.5), transparent 60%),
+    radial-gradient(1100px 720px at 50% 118%, rgba(223,198,157,.5), transparent 60%),
+    radial-gradient(700px 400px at 2% 100%, rgba(20,160,165,.12), transparent 60%),
+    var(--mango);
+  box-shadow:inset 0 1px 0 var(--line-soft), inset 0 -1px 0 var(--line-soft);
+}
+.section.sand .notch{background:var(--mango)}
 .section-head{
   display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
   margin-bottom:clamp(34px,4vw,52px); flex-wrap:wrap;
@@ -593,7 +604,7 @@ h1,h2,h3,h4{
 }
 .footer::before{
   content:'';position:absolute;top:-1px;left:0;right:0;height:22px;
-  background-color:var(--mango);
+  background-color:var(--paper);
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 22' preserveAspectRatio='none'%3E%3Cpath d='M0 22V12C90 2 190 2 300 9c130 8 250 9 400-2S950-2 1080 6c60 4 100 6 120 6v10z' fill='%23000'/%3E%3C/svg%3E");
   mask-size:100% 100%;
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 22' preserveAspectRatio='none'%3E%3Cpath d='M0 22V12C90 2 190 2 300 9c130 8 250 9 400-2S950-2 1080 6c60 4 100 6 120 6v10z' fill='%23000'/%3E%3C/svg%3E");
@@ -1245,7 +1256,7 @@ body{ top:0 !important; position:static !important; }
   .hero{min-height:auto}
   .hero-scrim{
     background:
-      linear-gradient(180deg, rgba(13,41,48,.8) 8%, rgba(17,54,63,.88) 45%, rgba(20,60,70,.62) 75%, rgba(22,70,82,.4) 100%);
+      linear-gradient(180deg, rgba(9,32,39,.76) 0%, rgba(13,45,54,.62) 38%, rgba(16,56,66,.36) 68%, rgba(22,70,82,.44) 100%);
   }
   .hero-inner{padding-bottom:84px}
   .hero-inner > div{max-width:none}

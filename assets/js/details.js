@@ -26,7 +26,13 @@ function buildModalShell() {
 }
 
 function closeDetailsModal() {
-  document.getElementById('vtcModalOverlay')?.classList.remove('open');
+  const overlay = document.getElementById('vtcModalOverlay');
+  if (!overlay || !overlay.classList.contains('open')) return;
+  overlay.classList.add('closing');
+  setTimeout(() => {
+    overlay.classList.remove('open', 'closing');
+    document.body.style.overflow = '';
+  }, 190);
 }
 
 /** Convierte el string de precio (uno o varios, separados por " · ") en
@@ -191,5 +197,6 @@ function openDetailsModal(item, tipo) {
     </div>`;
 
   document.getElementById('vtcModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
   content.querySelectorAll('img[data-name]').forEach((img) => withImageFallback(img, img.dataset.name));
 }

@@ -1,4 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════════════
    VIVAGO AI — widget de chat
    Reutiliza los tokens de marca de styles.css (--lagoon, --sea,
    --hibisco, --mango, tipografías Fraunces / Public Sans / JetBrains).
@@ -9,13 +9,13 @@
   position:fixed; left:18px; bottom:18px; z-index:95;
   display:flex; align-items:center; gap:10px;
   padding:13px 20px 13px 14px; border:none; border-radius:100px;
-  background:var(--grad-sea); color:#fff;
+  background:var(--grad-cta); color:#04333A;
   font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.82rem;
   letter-spacing:.03em;
-  box-shadow:0 16px 34px -10px rgba(6,59,76,.55);
-  transition:transform .2s ease, box-shadow .2s ease;
+  box-shadow:0 16px 34px -10px rgba(20,52,61,.45), var(--glow-cta);
+  transition:transform .25s var(--ease-spring), box-shadow .2s ease;
 }
-.vgai-fab:hover{ transform:translateY(-2px); box-shadow:0 22px 40px -12px rgba(6,59,76,.6); }
+.vgai-fab:hover{ transform:translateY(-3px); box-shadow:0 22px 40px -12px rgba(20,52,61,.5), var(--glow-cta); }
 .vgai-fab svg{ width:22px; height:22px; flex:none; }
 .vgai-fab .vgai-dot{
   width:9px; height:9px; border-radius:50%; background:#7CFCB3;
@@ -48,7 +48,7 @@
 }
 .vgai-head::after{
   content:''; position:absolute; left:0; right:0; bottom:-1px; height:3px;
-  background:linear-gradient(90deg,var(--lagoon),var(--mango) 45%,var(--hibisco) 90%);
+  background:linear-gradient(90deg,var(--lagoon-bright),var(--mango) 45%,var(--lagoon-deep) 90%);
 }
 .vgai-avatar{
   flex:none; width:38px; height:38px; border-radius:12px;
@@ -72,7 +72,7 @@
   flex:1; overflow-y:auto; padding:16px 14px 10px;
   display:flex; flex-direction:column; gap:10px;
   background:
-    radial-gradient(420px 240px at 100% 0%, rgba(232,213,181,.16), transparent 60%),
+    radial-gradient(420px 240px at 100% 0%, rgba(236,218,190,.16), transparent 60%),
     var(--paper);
   scrollbar-width:thin;
 }
@@ -110,7 +110,7 @@
   align-self:flex-start; font-family:'JetBrains Mono',monospace;
   font-size:.68rem; letter-spacing:.06em; color:var(--sea);
   padding:8px 12px; border-radius:100px;
-  background:rgba(24,166,166,.1); border:1px dashed rgba(24,166,166,.4);
+  background:rgba(20,160,165,.1); border:1px dashed rgba(20,160,165,.4);
 }
 
 /* Botón de reserva por WhatsApp dentro de la burbuja IA */
@@ -143,11 +143,11 @@
   flex:none; display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 10px;
 }
 .vgai-chip{
-  padding:7px 12px; border-radius:100px; border:1px solid rgba(24,166,166,.45);
-  background:rgba(24,166,166,.07); color:var(--sea);
+  padding:7px 12px; border-radius:100px; border:1px solid rgba(20,160,165,.45);
+  background:rgba(20,160,165,.07); color:var(--sea);
   font-size:.76rem; font-weight:600; transition:.15s;
 }
-.vgai-chip:hover{ background:rgba(24,166,166,.18); }
+.vgai-chip:hover{ background:rgba(20,160,165,.18); }
 
 /* ── Composer ─────────────────────────────────────────────── */
 .vgai-composer{
@@ -163,27 +163,27 @@
 .vgai-input:focus{ border-color:var(--lagoon); }
 .vgai-send{
   flex:none; width:42px; height:42px; border:none; border-radius:50%;
-  background:var(--grad-cta); color:#fff;
+  background:var(--grad-cta); color:#04333A;
   display:flex; align-items:center; justify-content:center;
-  box-shadow:0 8px 16px -6px rgba(231,111,81,.6);
-  transition:transform .15s, opacity .15s;
+  box-shadow:0 8px 16px -6px rgba(20,160,165,.55);
+  transition:transform .2s var(--ease-spring), opacity .15s;
 }
+.vgai-send svg{ width:19px; height:19px; fill:#04333A; }
 .vgai-send:hover{ transform:scale(1.06); }
 .vgai-send:disabled{ opacity:.45; cursor:not-allowed; transform:none; }
-.vgai-send svg{ width:19px; height:19px; fill:#fff; }
 
 /* ── Botón "Asesor IA" en la barra de navegación ──────────── */
 .vgai-nav-btn{
   display:inline-flex; align-items:center; gap:7px;
-  padding:10px 16px; border-radius:100px; border:1.5px solid var(--lagoon);
-  background:rgba(24,166,166,.1); color:var(--sea);
+  padding:10px 16px; border-radius:100px; border:1.5px solid rgba(20,160,165,.45);
+  background:rgba(20,160,165,.1); color:var(--lagoon-deep);
   font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.76rem;
   letter-spacing:.03em; white-space:nowrap;
-  transition:background .2s, color .2s, transform .2s;
+  transition:background .2s, color .2s, transform .2s var(--ease-spring), box-shadow .2s;
 }
 .vgai-nav-btn:hover{
-  background:var(--grad-sea); color:#fff; border-color:transparent;
-  transform:translateY(-1px);
+  background:var(--grad-ink); color:#fff; border-color:transparent;
+  transform:translateY(-2px); box-shadow:var(--shadow-sm);
 }
 @media (max-width:640px){
   .vgai-nav-btn span{ display:none; }   /* en móvil queda solo el ícono ✦ */

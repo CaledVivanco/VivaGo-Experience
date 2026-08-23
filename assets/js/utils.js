@@ -4,8 +4,8 @@
 
 /* Paleta usada para generar los placeholders de imagen (marca VivaGo Experience) */
 const PLACEHOLDER_PALETTE = [
-  ['#18A6A6', '#063B4C'], ['#063B4C', '#172126'], ['#E76F51', '#063B4C'],
-  ['#E8D5B5', '#172126'], ['#18A6A6', '#172126'], ['#E76F51', '#172126'],
+  ['#14A0A5', '#1E5864'], ['#1E5864', '#123842'], ['#2FB9BE', '#164652'],
+  ['#ECDABE', '#123842'], ['#14A0A5', '#123842'], ['#ECDABE', '#1E5864'],
 ];
 
 /* Número de WhatsApp del negocio, formato internacional sin '+' ni espacios

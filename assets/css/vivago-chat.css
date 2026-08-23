@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════════════════════════
+   VIVAGO AI — widget de chat
+   Reutiliza los tokens de marca de styles.css (--lagoon, --sea,
+   --hibisco, --mango, tipografías Fraunces / Public Sans / JetBrains).
+   Botón flotante abajo-izquierda (el de WhatsApp vive abajo-derecha).
+   ═══════════════════════════════════════════════════════════════ */
+
+.vgai-fab{
+  position:fixed; left:18px; bottom:18px; z-index:95;
+  display:flex; align-items:center; gap:10px;
+  padding:13px 20px 13px 14px; border:none; border-radius:100px;
+  background:var(--grad-sea); color:#fff;
+  font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.82rem;
+  letter-spacing:.03em;
+  box-shadow:0 16px 34px -10px rgba(6,59,76,.55);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.vgai-fab:hover{ transform:translateY(-2px); box-shadow:0 22px 40px -12px rgba(6,59,76,.6); }
+.vgai-fab svg{ width:22px; height:22px; flex:none; }
+.vgai-fab .vgai-dot{
+  width:9px; height:9px; border-radius:50%; background:#7CFCB3;
+  box-shadow:0 0 0 0 rgba(124,252,179,.7); animation:vgaiPulse 2.2s infinite;
+}
+@keyframes vgaiPulse{
+  0%{ box-shadow:0 0 0 0 rgba(124,252,179,.65); }
+  70%{ box-shadow:0 0 0 9px rgba(124,252,179,0); }
+  100%{ box-shadow:0 0 0 0 rgba(124,252,179,0); }
+}
+
+.vgai-panel{
+  position:fixed; left:18px; bottom:18px; z-index:96;
+  width:min(400px, calc(100vw - 24px));
+  height:min(600px, calc(100dvh - 36px));
+  display:flex; flex-direction:column; overflow:hidden;
+  background:var(--paper);
+  border:1px solid var(--line-soft); border-radius:var(--radius);
+  box-shadow:var(--shadow-lift);
+  opacity:0; transform:translateY(14px) scale(.98); pointer-events:none;
+  transition:opacity .22s ease, transform .22s ease;
+}
+.vgai-panel.open{ opacity:1; transform:none; pointer-events:auto; }
+
+/* ── Cabecera ─────────────────────────────────────────────── */
+.vgai-head{
+  flex:none; display:flex; align-items:center; gap:11px;
+  padding:14px 16px; color:#fff; background:var(--grad-sea);
+  position:relative;
+}
+.vgai-head::after{
+  content:''; position:absolute; left:0; right:0; bottom:-1px; height:3px;
+  background:linear-gradient(90deg,var(--lagoon),var(--mango) 45%,var(--hibisco) 90%);
+}
+.vgai-avatar{
+  flex:none; width:38px; height:38px; border-radius:12px;
+  background:rgba(255,255,255,.14);
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.25);
+}
+.vgai-avatar svg{ width:22px; height:22px; }
+.vgai-title{ line-height:1.15; min-width:0; }
+.vgai-title b{ font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; display:block; }
+.vgai-title span{ font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; opacity:.75; }
+.vgai-close{
+  margin-left:auto; flex:none; width:34px; height:34px; border:none; border-radius:50%;
+  background:rgba(255,255,255,.14); color:#fff; font-size:1.05rem; line-height:1;
+  transition:background .2s;
+}
+.vgai-close:hover{ background:rgba(255,255,255,.28); }
+
+/* ── Mensajes ─────────────────────────────────────────────── */
+.vgai-msgs{
+  flex:1; overflow-y:auto; padding:16px 14px 10px;
+  display:flex; flex-direction:column; gap:10px;
+  background:
+    radial-gradient(420px 240px at 100% 0%, rgba(232,213,181,.16), transparent 60%),
+    var(--paper);
+  scrollbar-width:thin;
+}
+.vgai-msg{
+  max-width:86%; padding:10px 13px; border-radius:16px;
+  font-size:.9rem; line-height:1.45; white-space:pre-wrap; word-wrap:break-word;
+  animation:vgaiIn .18s ease;
+}
+@keyframes vgaiIn{ from{ opacity:0; transform:translateY(5px);} to{ opacity:1; transform:none;} }
+.vgai-msg.user{
+  align-self:flex-end; background:var(--sea); color:#fff;
+  border-bottom-right-radius:5px;
+}
+.vgai-msg.ai{
+  align-self:flex-start; background:var(--paper-dim); color:var(--ink);
+  border-bottom-left-radius:5px; border:1px solid var(--line-soft);
+}
+.vgai-msg b{ font-weight:700; }
+.vgai-msg ul{ list-style:none; margin:4px 0; padding:0; }
+.vgai-msg li{ padding-left:14px; position:relative; }
+.vgai-msg li::before{ content:'•'; position:absolute; left:2px; color:var(--hibisco); }
+
+/* Estado "escribiendo…" */
+.vgai-typing{ align-self:flex-start; display:flex; gap:5px; padding:12px 15px; background:var(--paper-dim); border-radius:16px; border:1px solid var(--line-soft); }
+.vgai-typing i{
+  width:7px; height:7px; border-radius:50%; background:var(--lagoon); display:block;
+  animation:vgaiBounce 1.1s infinite;
+}
+.vgai-typing i:nth-child(2){ animation-delay:.15s; }
+.vgai-typing i:nth-child(3){ animation-delay:.3s; }
+@keyframes vgaiBounce{ 0%,60%,100%{ transform:translateY(0); opacity:.45;} 30%{ transform:translateY(-5px); opacity:1;} }
+
+/* Estado consultando catálogo */
+.vgai-consultando{
+  align-self:flex-start; font-family:'JetBrains Mono',monospace;
+  font-size:.68rem; letter-spacing:.06em; color:var(--sea);
+  padding:8px 12px; border-radius:100px;
+  background:rgba(24,166,166,.1); border:1px dashed rgba(24,166,166,.4);
+}
+
+/* Botón de reserva por WhatsApp dentro de la burbuja IA */
+.vgai-reservar{
+  display:inline-flex; align-items:center; gap:7px; margin-top:8px;
+  padding:9px 15px; border-radius:100px; border:none;
+  background:#1FAF54; color:#fff !important;
+  font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.74rem;
+  letter-spacing:.02em; text-decoration:none;
+  box-shadow:0 8px 18px -6px rgba(31,175,84,.55);
+  transition:transform .15s;
+}
+.vgai-reservar:hover{ transform:translateY(-1px); }
+.vgai-reservar svg{ width:15px; height:15px; fill:currentColor; }
+
+/* Error + reintentar */
+.vgai-error{
+  align-self:center; max-width:92%; text-align:center;
+  padding:10px 14px; border-radius:14px; font-size:.84rem;
+  background:#FDEDE8; border:1px solid rgba(231,111,81,.35); color:#8A3A24;
+}
+.vgai-reintentar{
+  display:inline-block; margin-top:6px; padding:7px 16px; border-radius:100px;
+  border:none; background:var(--hibisco); color:#fff;
+  font-weight:700; font-size:.78rem;
+}
+
+/* Chips de sugerencia inicial */
+.vgai-chips{
+  flex:none; display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 10px;
+}
+.vgai-chip{
+  padding:7px 12px; border-radius:100px; border:1px solid rgba(24,166,166,.45);
+  background:rgba(24,166,166,.07); color:var(--sea);
+  font-size:.76rem; font-weight:600; transition:.15s;
+}
+.vgai-chip:hover{ background:rgba(24,166,166,.18); }
+
+/* ── Composer ─────────────────────────────────────────────── */
+.vgai-composer{
+  flex:none; display:flex; align-items:flex-end; gap:8px;
+  padding:11px 12px; border-top:1px solid var(--line-soft); background:var(--paper);
+}
+.vgai-input{
+  flex:1; resize:none; max-height:110px;
+  border:1.5px solid var(--line); border-radius:14px;
+  padding:10px 12px; font:inherit; font-size:.88rem; color:var(--ink);
+  background:var(--paper); outline:none; transition:border-color .15s;
+}
+.vgai-input:focus{ border-color:var(--lagoon); }
+.vgai-send{
+  flex:none; width:42px; height:42px; border:none; border-radius:50%;
+  background:var(--grad-cta); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 16px -6px rgba(231,111,81,.6);
+  transition:transform .15s, opacity .15s;
+}
+.vgai-send:hover{ transform:scale(1.06); }
+.vgai-send:disabled{ opacity:.45; cursor:not-allowed; transform:none; }
+.vgai-send svg{ width:19px; height:19px; fill:#fff; }
+
+/* ── Botón "Asesor IA" en la barra de navegación ──────────── */
+.vgai-nav-btn{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:10px 16px; border-radius:100px; border:1.5px solid var(--lagoon);
+  background:rgba(24,166,166,.1); color:var(--sea);
+  font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.76rem;
+  letter-spacing:.03em; white-space:nowrap;
+  transition:background .2s, color .2s, transform .2s;
+}
+.vgai-nav-btn:hover{
+  background:var(--grad-sea); color:#fff; border-color:transparent;
+  transform:translateY(-1px);
+}
+@media (max-width:640px){
+  .vgai-nav-btn span{ display:none; }   /* en móvil queda solo el ícono ✦ */
+  .vgai-nav-btn{ padding:9px 12px; }
+}
+
+/* Móvil: el panel ocupa casi toda la pantalla */
+@media (max-width:520px){
+  .vgai-panel{ left:8px; bottom:8px; width:calc(100vw - 16px); height:calc(100dvh - 70px); border-radius:20px; }
+  .vgai-fab{ left:12px; bottom:12px; padding:12px 17px 12px 12px; }
+}

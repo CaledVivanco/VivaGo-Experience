@@ -160,7 +160,7 @@ const allTours = [
     tags: ['Playa', 'Relajación'],
     featured: true,
     rating: 4.7,
-    img: 'index_files/playablanca.webp',
+    img: 'index_files/playablanca.png',
     desc: 'Relájate en las aguas cristalinas y arena blanca de Playa Blanca, Barú. Un plan ideal para desconectarte, disfrutar del mar Caribe y vivir un día de descanso total.',
     incluye: [
       'Transporte ida y vuelta',
@@ -601,7 +601,7 @@ const allTours = [
     tags: ['Historia', 'Cultura'],
     featured: true,
     rating: 4.8,
-    img: 'index_files/city.jpg',
+    img: 'index_files/city.png',
     desc: 'Camina por siglos de historia con un guía experto que da vida a cada rincón. Recorrido por la Catedral, el Palacio de la Inquisición y los callejones floridos, con relatos de piratas, conquistas y leyendas que solo un cartagenero de corazón sabe contar.',
     incluye: [
       'Transporte Climatizado (recogida y regreso)',

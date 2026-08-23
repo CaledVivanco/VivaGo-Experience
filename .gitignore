@@ -1,0 +1,13 @@
+# Secretos
+.env
+
+# Dependencias del backend
+server/node_modules/
+node_modules/
+
+# Vercel
+.vercel
+
+# Sistema / editor
+.DS_Store
+Thumbs.db

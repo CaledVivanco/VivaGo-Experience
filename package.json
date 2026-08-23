@@ -1,0 +1,9 @@
+{
+  "name": "vivago-experience",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio + asesor VivaGo AI (frontend estático, backend local en server/ y funciones serverless para Vercel en api/)",
+  "engines": {
+    "node": ">=18"
+  }
+}

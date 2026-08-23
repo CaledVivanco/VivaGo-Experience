@@ -8,7 +8,7 @@ function tourTicketHTML(item, idx) {
   return `
   <article class="ticket" data-idx="${idx}" data-tipo="tour" tabindex="0" role="button" aria-label="Ver detalles de ${escapeAttr(item.nombre)}">
     <div class="ticket-photo">
-      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy" decoding="async">
+      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy">
       <div class="ticket-rating">★ <b>${item.rating.toFixed(1)}</b></div>
       ${item.featured ? `<div class="ticket-badge">Popular</div>` : ''}
       ${item.sello ? `<div class="ticket-stamp"><span>${escapeAttr(item.sello)}</span></div>` : ''}
@@ -41,7 +41,7 @@ function rentalTicketHTML(item, idx) {
   return `
   <article class="ticket rental" data-idx="${idx}" data-tipo="alquiler" tabindex="0" role="button" aria-label="Ver detalles de ${escapeAttr(item.nombre)}">
     <div class="ticket-photo">
-      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy" decoding="async">
+      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy">
       ${item.tipoClass === 'premium' ? `<div class="ticket-badge">Premium</div>` : ''}
       ${item.tipoClass === 'extreme' ? `<div class="ticket-badge">Extremo</div>` : ''}
     </div>
@@ -68,11 +68,7 @@ function escapeAttr(str) {
 
 /** Engancha imágenes con fallback + clic en toda la card para abrir el modal de detalles */
 function wireCards(container, tourList, rentalList) {
-  container.querySelectorAll('img[data-name]').forEach((img) => {
-    withImageFallback(img, img.dataset.name);
-    if (img.complete) img.classList.add('is-loaded');
-    else img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true });
-  });
+  container.querySelectorAll('img[data-name]').forEach((img) => withImageFallback(img, img.dataset.name));
   container.querySelectorAll('.ticket[data-idx]').forEach((card) => {
     const tipo = card.dataset.tipo;
     const idx = Number(card.dataset.idx);

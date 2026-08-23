@@ -22,8 +22,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+/* Analytics solo en producción: la clave tiene restricción de referrer
+   y localhost dispara errores 403 (instalaciones/webConfig). */
+const esLocal =
+  location.protocol === 'file:' ||
+  ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+
 let analytics;
-try { analytics = getAnalytics(app); } catch (e) { /* analytics no disponible offline/file:// */ }
+if (!esLocal) {
+  try { analytics = getAnalytics(app); } catch (e) { /* analytics no disponible */ }
+}
 const db = getFirestore(app);
 
 /* Expuesto globalmente para que lo use comments.js

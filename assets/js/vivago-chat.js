@@ -420,8 +420,21 @@
     console.warn('[VivaGo AI] El chat necesita el backend activo: ejecuta "npm start" dentro de server/ y abre http://localhost:3000');
   }
 
-  /* API pública por si otro script quiere abrir/cerrar el chat */
-  window.VivaGoAI = { abrir: () => ui && abrir(), cerrar: () => ui && cerrar() };
+  /* API pública por si otro script quiere abrir/cerrar el chat
+     o pre-cargar contexto (ej: opciones rápidas del VivaGo Concierge). */
+  window.VivaGoAI = {
+    abrir: () => { construirUI(); abrir(); },
+    cerrar: () => ui && cerrar(),
+    /** Envia un mensaje como si lo escribiera el usuario (contexto Concierge) */
+    enviar: (texto) => {
+      const msg = String(texto || '').trim();
+      if (!msg) return;
+      construirUI(); abrir();
+      ui.input.value = msg;
+      autoAltura();
+      if (!enviando) enviar();
+    },
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', construirUI);

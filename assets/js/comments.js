@@ -39,7 +39,7 @@ function initComments() {
               <div class="circle">${initial}</div>
               <div>
                 <b>${escapeHtml(d.nombre || 'Viajero')}</b>
-                <span>${d.tour ? escapeHtml(d.tour) : 'Experiencia Vivanco\'s'}</span>
+                <span>${d.tour ? escapeHtml(d.tour) : 'Experiencia VivaGo'}</span>
               </div>
             </div>
             <div class="review-stars">${starRow(d.rating || 5)}</div>

@@ -109,3 +109,163 @@ function injectFooterSocialIcons() {
 }
 document.addEventListener('DOMContentLoaded', injectFooterSocialIcons);
 
+/* ═══════════════════════════════════════════════════════════════
+   SONIDO DEL CARIBE — audio real del sitio (index_files/),
+   compartido por TODAS las páginas.
+   · Botón de pausa/reanudar en la barra de navegación.
+   · AUTOPROGRAMADO: al cargar cada página se intenta reproducir
+     sin clic. Chrome/Edge lo permiten en sitios con historial de
+     audio del usuario; Safari/Firefox exigen un primer gesto por
+     política interna (imposible evitar), y el respaldo lo cubre.
+   · sessionStorage "vgAmbiente": '1' sonando · '0' pausado.
+     La preferencia se respeta al navegar entre páginas.
+   · Al cambiar de pestaña o minimizar, el audio se pausa solo
+     (Page Visibility API) y se reanuda al regresar.
+   · La posición de la canción se recuerda entre páginas
+     (sessionStorage): al navegar sigue por donde iba.
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  /* Nombre con espacios/paréntesis → URL codificada.
+     Versión INSTRUMENTAL (voz cancelada) generada a partir del
+     original; el archivo con voz sigue intacto en index_files/. */
+  const SRC = 'index_files/' + encodeURIComponent('La Pollera Colora (Instrumental).wav');
+  const VOLUMEN = 0.26;
+  const FLAG = 'vgAmbiente';
+  let audio = null;
+  let sonando = false;
+
+  function estadoGuardado() {
+    try { return sessionStorage.getItem(FLAG); } catch (_) { return null; }
+  }
+
+  function asegurarAudio() {
+    if (audio) return;
+    audio = new Audio(SRC);
+    audio.loop = true;
+    audio.preload = 'auto';
+    audio.volume = VOLUMEN;
+    audio.addEventListener('error', () => { /* archivo ausente: silencio elegante */ }, { once: true });
+
+    /* ── continuidad entre páginas ─────────────────────────────
+       La posición se guarda en sessionStorage cada segundo; al
+       abrir otra página del sitio el audio se reanuda por donde
+       iba (los navegadores obligan a esperar el primer gesto,
+       pero ya NO empieza desde el inicio). */
+    let ultimoGuardado = 0;
+    audio.addEventListener('timeupdate', () => {
+      const t = audio.currentTime;
+      if (t - ultimoGuardado >= 1) {
+        ultimoGuardado = t;
+        try { sessionStorage.setItem('vgAudioT', String(t)); } catch (_) {}
+      }
+    });
+    const posicionGuardada = Number(sessionStorage.getItem('vgAudioT')) || 0;
+    if (posicionGuardada > 0) {
+      audio.addEventListener('loadedmetadata', () => {
+        try {
+          /* loop: si guardó cerca del final, recoloca dentro de la duración */
+          const dur = audio.duration || 0;
+          audio.currentTime = dur > 0 ? posicionGuardada % dur : 0;
+        } catch (_) {}
+      }, { once: true });
+    }
+  }
+
+  function pausar() {
+    sonando = false;
+    try { sessionStorage.setItem(FLAG, '0'); } catch (_) {}
+    if (audio) audio.pause();
+    actualizarBoton();
+  }
+
+  function reanudar() {
+    try { sessionStorage.setItem(FLAG, '1'); } catch (_) {}
+    reproducir();
+  }
+
+  /** Intenta reproducir y sincroniza el estado del botón con el
+      resultado real (el navegador permite o no el autoplay). */
+  function reproducir() {
+    asegurarAudio();
+    const p = audio.play();
+    if (p && p.then) {
+      p.then(() => { sonando = true; actualizarBoton(); })
+       .catch(() => { sonando = false; actualizarBoton(); });
+    } else {
+      sonando = true;
+      actualizarBoton();
+    }
+  }
+
+  /* ── arranque AUTOMÁTICO en cada página, sin clic ───────────
+     Al cargar se intenta reproducir de inmediato: Chrome/Edge lo
+     permiten en sitios donde ya se escuchó audio antes (y al
+     llegar desde un enlace interno). Si el navegador aún lo
+     bloquea, queda armado y arranca con el primer gesto — la
+     canción continúa por donde iba de todos modos. */
+  function arranqueAutomatico() {
+    if (estadoGuardado() === '0') return;                        // usuario lo pausó antes
+    reproducir();
+  }
+
+  /* ── pausa automática al salir de la pestaña/minimizar ──────
+      No hace falta cerrar la página: con solo cambiar de pestaña o
+      app (Page Visibility API) la música se detiene y se reanuda
+      sola al volver — siempre que el usuario no la haya pausado. */
+  document.addEventListener('visibilitychange', () => {
+    if (!audio) return;
+    if (document.hidden) {
+      if (sonando) audio.pause();
+    } else if (sonando && estadoGuardado() !== '0') {
+      const p = audio.play();
+      if (p && p.catch) p.catch(() => { /* requiere nuevo gesto */ });
+    }
+  });
+
+  /* ── botón en la navegación (todas las páginas) ───────────── */
+  const ICONO_ON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
+  const ICONO_OFF = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path d="M17 9l5 6"/><path d="M22 9l-5 6"/></svg>';
+
+  function actualizarBoton() {
+    const b = document.getElementById('vgSoundBtn');
+    if (!b) return;
+    b.innerHTML = sonando ? ICONO_ON : ICONO_OFF;
+    b.setAttribute('aria-pressed', String(sonando));
+    b.setAttribute('aria-label', sonando ? 'Pausar música del Caribe' : 'Activar música del Caribe');
+    b.title = sonando ? 'Pausar música del Caribe' : 'Activar música del Caribe';
+  }
+
+  function inyectarBoton() {
+    if (document.getElementById('vgSoundBtn')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'vgSoundBtn';
+    btn.className = 'nav-sound-btn notranslate';
+    btn.setAttribute('translate', 'no');
+
+    const cluster = document.querySelector('.nav-inner > div');
+    if (cluster) cluster.insertBefore(btn, cluster.firstChild);
+    else {
+      btn.classList.add('is-float');
+      document.body.appendChild(btn);
+    }
+    btn.addEventListener('click', () => (sonando ? pausar() : reanudar()));
+    actualizarBoton();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    inyectarBoton();
+    arranqueAutomatico();
+  });
+
+  /* respaldo: si el autoplay fue bloqueado al cargar, el primer
+     gesto del usuario lo levanta sin necesidad de tocar el botón */
+  const eventos = ['pointerdown', 'keydown', 'touchstart'];
+  function kick() {
+    eventos.forEach(ev => window.removeEventListener(ev, kick, true));
+    if (estadoGuardado() === '0' || sonando) return;
+    reanudar();
+  }
+  eventos.forEach(ev => window.addEventListener(ev, kick, { capture: true }));
+})();

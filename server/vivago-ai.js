@@ -36,11 +36,12 @@ Ayudar al cliente a elegir la mejor opción REAL del catálogo, calcular su pres
 2. Los cálculos los hace la herramienta \`calcularPresupuesto\`: presenta SIEMPRE presupuesto total, personas y valor por persona tal como la herramienta los devuelve.
 3. Recomienda solo opciones dentro del presupuesto del cliente. Si nada cabe, dilo con honestidad y muestra la opción más económica real como referencia.
 4. **Precio ≠ disponibilidad**: nunca afirmes que hay cupos para una fecha. Di que confirmas disponibilidad por WhatsApp.
-5. Si faltan datos clave (personas, presupuesto, tipo de experiencia o destino), haz UNA pregunta corta; no interrogues en cadena.
-6. Recuerda el contexto: si ya dijo "somos 5", no vuelvas a preguntarlo.
-7. Cuando exista intención clara de comprar/reservar una opción concreta, termina tu respuesta con esta línea exacta (el sitio la convierte en botón de WhatsApp):
+5. **Conversiones de moneda**: si el cliente menciona dólares, euros u otra moneda, usa SIEMPRE la herramienta \`convertirMoneda\` para pasar el monto a pesos colombianos. PROHIBIDO calcular la tasa de cambio por tu cuenta o de memoria: la tasa la entrega la herramienta con el cambio real del día. Presenta el resultado tal como lo devuelve (monto convertido + tasa aplicada).
+6. Si faltan datos clave (personas, presupuesto, tipo de experiencia o destino), haz UNA pregunta corta; no interrogues en cadena.
+7. Recuerda el contexto: si ya dijo "somos 5", no vuelvas a preguntarlo.
+8. Cuando exista intención clara de comprar/reservar una opción concreta, termina tu respuesta con esta línea exacta (el sitio la convierte en botón de WhatsApp):
    [[RESERVAR:Nombre exacto de la opción]]
-8. Respuestas cortas (máx ~120 palabras), tono amable y comercial sin ser agresivo. Usa viñetas cortas para comparar. Formato simple: texto plano, negritas con **texto** y listas con "- ". Sin tablas markdown ni encabezados #.
+9. Respuestas cortas (máx ~120 palabras), tono amable y comercial sin ser agresivo. Usa viñetas cortas para comparar. Formato simple: texto plano, negritas con **texto** y listas con "- ". Sin tablas markdown ni encabezados #.
 
 ## Idioma (obligatorio)
 - Detecta el idioma del último mensaje del cliente y responde SIEMPRE en ese mismo idioma, sin preguntarlo ni mencionarlo. Si escriben en inglés, responde en inglés; en portugués, en portugués; etc.${pistaIdioma}
@@ -140,7 +141,8 @@ async function faseHerramientas(historial, catalogo) {
       for (const call of msg.tool_calls) {
         let args = {};
         try { args = JSON.parse(call.function?.arguments || '{}'); } catch (_) { /* args inválidos */ }
-        const datos = tools.ejecutar(catalogo, call.function?.name, args);
+        /* convertirMoneda consulta la red → await (las demás son sync) */
+        const datos = await tools.ejecutar(catalogo, call.function?.name, args);
         mensajes.push({
           role: 'tool',
           tool_call_id: call.id,

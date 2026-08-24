@@ -4,20 +4,46 @@
    de imagen
    ═══════════════════════════════════════════════════════════════ */
 
+/* Derivado SOLO de tags reales del catálogo — nunca inventado */
+const PERFECTO_MAPA = {
+  'Playa': 'familias', 'Mar': 'grupos', 'VIP': 'celebraciones', 'Privado': 'parejas',
+  'Aventura': 'aventureros', 'Naturaleza': 'fotografía', 'Cultura': 'cultura',
+  'Historia': 'cultura', 'Gastronomía': 'foodies', 'Nocturno': 'amigos', 'Relajación': 'parejas',
+};
+
+function perfectoPara(item) {
+  const vistos = new Set();
+  const out = [];
+  for (const tag of item.tags || []) {
+    const quien = PERFECTO_MAPA[tag];
+    if (quien && !vistos.has(quien)) { vistos.add(quien); out.push(quien); }
+    if (out.length === 3) break;
+  }
+  return out;
+}
+
+function duracionCorta(item) {
+  const parts = String(item.eyebrow || '').split('·');
+  return (parts.length > 1 ? parts.slice(1).join('·') : parts[0] || '').trim();
+}
+
 function tourTicketHTML(item, idx) {
+  const perfectos = perfectoPara(item);
   return `
   <article class="ticket" data-idx="${idx}" data-tipo="tour" tabindex="0" role="button" aria-label="Ver detalles de ${escapeAttr(item.nombre)}">
     <div class="ticket-photo">
-      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy">
+      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy" class="mask-img">
       <div class="ticket-rating">★ <b>${item.rating.toFixed(1)}</b></div>
       ${item.featured ? `<div class="ticket-badge">Popular</div>` : ''}
       ${item.sello ? `<div class="ticket-stamp"><span>${escapeAttr(item.sello)}</span></div>` : ''}
+      <span class="ticket-duration">${escapeAttr(duracionCorta(item))}</span>
     </div>
     <div class="ticket-body">
       <span class="eyebrow">${escapeAttr(item.eyebrow)}</span>
       <h3>${escapeAttr(item.nombre)}</h3>
       <p>${escapeAttr(item.desc)}</p>
       <div class="tag-row">${item.tags.map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>
+      ${perfectos.length ? `<p class="ticket-perfect"><b>Perfecto para:</b> ${perfectos.join(' <span class="sep">·</span> ')}</p>` : ''}
       <div class="ticket-perf">
         ${tourPriceHTML(item)}
         <span class="ticket-cta">Ver detalles</span>
@@ -38,12 +64,15 @@ function tourPriceHTML(item) {
 
 function rentalTicketHTML(item, idx) {
   const availClass = item.disponible.toLowerCase().includes('hoy') ? 'hoy' : 'consultar';
+  const specsHover = (item.specs || []).map(s =>
+    `<span><span>${s.label}</span><b>${s.val}</b></span>`).join('');
   return `
   <article class="ticket rental" data-idx="${idx}" data-tipo="alquiler" tabindex="0" role="button" aria-label="Ver detalles de ${escapeAttr(item.nombre)}">
     <div class="ticket-photo">
-      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy">
+      <img data-name="${escapeAttr(item.nombre)}" src="${item.img}" alt="${escapeAttr(item.nombre)}" loading="lazy" class="mask-img">
       ${item.tipoClass === 'premium' ? `<div class="ticket-badge">Premium</div>` : ''}
       ${item.tipoClass === 'extreme' ? `<div class="ticket-badge">Extremo</div>` : ''}
+      ${specsHover ? `<div class="rental-specs-hover">${specsHover}</div>` : ''}
     </div>
     <div class="ticket-body">
       <span class="eyebrow">${escapeAttr(item.tipo)}</span>

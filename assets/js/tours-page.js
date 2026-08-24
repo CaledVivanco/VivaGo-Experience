@@ -6,11 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!grid) return;
 
   const allTags = [...new Set(allTours.flatMap(t => t.tags))].sort();
-  pillsWrap.innerHTML = `<button class="filter-pill active" data-tag="all">Todos</button>` +
-    allTags.map(tag => `<button class="filter-pill" data-tag="${tag}">${tag}</button>`).join('');
 
   let activeTag = 'all';
   let searchTerm = '';
+
+  /* Filtro inicial vía URL: tours.html?tag=Mar (lo usan los CTAs
+     contextuales del home: selector de Caribe, moods, journey) */
+  try {
+    const tagURL = new URLSearchParams(location.search).get('tag');
+    if (tagURL && allTags.includes(tagURL)) activeTag = tagURL;
+  } catch (_) { /* URLSearchParams no disponible */ }
+
+  pillsWrap.innerHTML = `<button class="filter-pill active" data-tag="all">Todos</button>` +
+    allTags.map(tag => `<button class="filter-pill" data-tag="${tag}">${tag}</button>`).join('');
+  /* marca el filtro inicial (URL ?tag=…) tras construir los pills */
+  pillsWrap.querySelectorAll('.filter-pill').forEach(b =>
+    b.classList.toggle('active', b.dataset.tag === activeTag));
 
   /* Los tours más pedidos (mismo orden que en el carrusel del home) van primero;
      el resto conserva su orden original del catálogo. */

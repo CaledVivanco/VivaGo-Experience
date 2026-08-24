@@ -199,4 +199,6 @@ function openDetailsModal(item, tipo) {
   document.getElementById('vtcModalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   content.querySelectorAll('img[data-name]').forEach((img) => withImageFallback(img, img.dataset.name));
+  /* Aviso para módulos externos (ej: VivaGo Passport estampa el sello) */
+  document.dispatchEvent(new CustomEvent('vg:details', { detail: { item, tipo } }));
 }

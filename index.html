@@ -3,16 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VivaGo Experience · Tours y alquiler náutico en Cartagena</title>
+<title>VivaGo Experience · El Caribe se navega a tu manera | Tours y alquiler náutico en Cartagena</title>
 <link rel="icon" type="image/jpeg" href="index_files/logo-vivago-experience.jpeg">
-<meta name="theme-color" content="#164652">
-<meta name="description" content="Descubre los tours e islas más populares de Cartagena y alquila lanchas, yates y catamaranes. Toda la info al detalle, contáctanos por WhatsApp.">
+<meta name="theme-color" content="#06181F">
+<meta name="description" content="Descubre Cartagena a tu manera: tours a las islas del Rosario, Barú y Tierra Bomba, cultura afro, aventura y alquiler de lanchas, yates y catamaranes. Reserva directo por WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VivaGo Experience · El Caribe se navega a tu manera">
+<meta property="og:description" content="Experiencias premium en Cartagena de Indias: islas, cultura, aventura y alquiler náutico. Construye tu día y reserva por WhatsApp.">
+<meta property="og:image" content="index_files/Cartagena_principal.jpeg">
 <link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/vivago-cinema.css">
 <link rel="stylesheet" href="assets/css/vivago-chat.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "VivaGo Experience",
+  "description": "Agencia local de tours y alquiler náutico en Cartagena de Indias.",
+  "areaServed": "Cartagena de Indias, Colombia",
+  "address": { "@type": "PostalAddress", "addressLocality": "Cartagena de Indias", "addressCountry": "CO" },
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61553201123223",
+    "https://www.instagram.com/vivagoexperience/",
+    "https://www.tiktok.com/@vivagoexperience"
+  ]
+}
+</script>
 <script async src="https://www.instagram.com/embed.js"></script>
 <script async src="https://www.tiktok.com/embed.js"></script>
 </head>
-<body>
+<body class="home">
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <!-- Google Website Translator: motor de traducción automática (sin su barra por defecto) -->
 <div id="google_translate_element"></div>
@@ -22,91 +44,510 @@
 <!-- ═══════════════ NAV ═══════════════ -->
 <header class="nav">
   <div class="nav-inner">
-<a href="index.html" class="brand">
-  <img src="index_files/logo-vivago-experience.jpeg" alt="Logo VivaGo Experience" style="height: 35px; width: auto;">
-</a>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Inicio</a>
+    <a href="index.html" class="brand notranslate">
+      <img src="index_files/logo-vivago-experience.jpeg" alt="Logo VivaGo Experience" style="height: 35px; width: auto;">
+      <span>VivaGo <span class="brand-xp">Experience</span><small>Cartagena · CTG</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+      <a href="#experiencias">Experiencias</a>
       <a href="tours.html">Tours</a>
-      <a href="alquiler.html">Alquiler</a>
+      <a href="#mapa">Islas</a>
+      <a href="#concierge">Concierge</a>
       <a href="#resenas">Reseñas</a>
       <a href="#redes">Redes</a>
     </nav>
     <div style="display:flex;align-items:center;gap:10px">
       <button type="button" class="vgai-nav-btn" data-vgai-abrir aria-label="Abrir chat con VivaGo AI">✦ <span>Asesor IA</span></button>
-      <a href="tours.html" class="nav-cta">Ver tours</a>
+      <a class="nav-cta" href="https://wa.me/573122207263?text=%C2%A1Hola!%20Quiero%20reservar%20una%20experiencia%20con%20VivaGo%20Experience." target="_blank" rel="noopener">Reservar</a>
       <div data-lang-mount></div>
       <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
     </div>
   </div>
 </header>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<section class="hero">
-  <div class="hero-bg" id="heroFlag" style="background-image:url('index_files/Cartagena_principal.jpeg')" role="img" aria-label="Cartagena, Colombia"></div>
-  <div class="hero-scrim"></div>
-  <div class="hero-grain"></div>
-  <div class="hero-inner">
-    <div>
-      <span class="hero-eyebrow"><span class="dot"></span> Cartagena de Indias, Colombia</span>
-      <h1>El Caribe se navega <em>a tu manera</em>.</h1>
-      <p class="lead">Tours a las islas más fotografiadas del país y alquiler de lanchas, yates y catamaranes — explora cada opción en detalle y contáctanos directo.</p>
-      <div class="hero-actions">
-        <a href="tours.html" class="btn btn-primary">Ver todos los tours ↗</a>
-        <a href="alquiler.html" class="btn btn-ghost">Ver alquiler náutico</a>
+<main id="contenido">
+
+<!-- ═══════════════ HERO — EL CARIBE SE NAVEGA ═══════════════ -->
+<section class="c-hero" aria-label="Portada">
+  <div class="c-hero-bg" role="img" aria-label="Cartagena de Indias vista desde el mar Caribe">
+    <img class="hero-slide is-on" src="index_files/slider1.jpeg" alt="" decoding="async">
+    <img class="hero-slide" src="index_files/slider2.jpeg" alt="" loading="lazy" decoding="async">
+    <img class="hero-slide" src="index_files/slider3.jpeg" alt="" loading="lazy" decoding="async">
+    <img class="hero-slide" src="index_files/slider4.jpeg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="c-hero-veil"></div>
+  <div class="c-hero-grain"></div>
+  <div class="c-hero-grid"></div>
+
+  <div class="c-hero-inner">
+    <p class="c-hero-coords">
+      <span>10°23' N</span><span class="rule"></span><span>75°30' W</span><span class="rule"></span><span>CARTAGENA DE INDIAS</span>
+    </p>
+    <h1 class="c-hero-title">
+      <span class="line"><span>El Caribe</span></span>
+      <span class="line"><span>se navega</span></span>
+      <span class="line"><span>
+        <em class="swap" data-swap tabindex="0" role="button" aria-label="Cambiar tipo de experiencia">
+          <span class="swap-word">a tu manera</span>
+          <span class="swap-hint">toca para elegir tu rumbo ↓</span>
+        </em>
+      </span></span>
+    </h1>
+    <p class="c-hero-sub">Ciudad amurallada, manglares, playas de arena blanca y embarcaciones privadas. Entra, navega la página y construye el día que quieres recordar.</p>
+    <div class="c-hero-actions">
+      <a href="#experiencias" class="btn btn-primary">Explorar experiencias ↗</a>
+      <a href="alquiler.html" class="btn-line">Ver alquiler náutico</a>
+    </div>
+
+    <div class="c-hero-stats">
+      <div><b id="statTours">50+</b><span>Tours disponibles</span></div>
+      <div><b>30+</b><span>Años de experiencia</span></div>
+      <div><b>4.8</b><span>Calificación promedio</span></div>
+    </div>
+  </div>
+
+  <!-- instrumento náutico decorativo -->
+  <div class="c-hero-instrument" aria-hidden="true">
+    <svg class="c-compass" viewBox="0 0 150 150" fill="none">
+      <circle cx="75" cy="75" r="72" stroke="rgba(255,255,255,.35)" stroke-width="1"/>
+      <circle cx="75" cy="75" r="60" stroke="rgba(255,255,255,.18)" stroke-width="1" stroke-dasharray="2 6"/>
+      <g class="rose">
+        <path d="M75 12 L81 69 L138 75 L81 81 L75 138 L69 81 L12 75 L69 69 Z" fill="rgba(127,224,227,.85)"/>
+        <path d="M75 30 L78 72 L120 75 L78 78 L75 120 L72 78 L30 75 L72 72 Z" fill="rgba(10,37,48,.9)"/>
+        <circle cx="75" cy="75" r="5" fill="#ECDABE"/>
+      </g>
+      <text x="75" y="8" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="JetBrains Mono" font-size="8">N</text>
+    </svg>
+    <p class="c-hero-meta">CARTA DE NAVEGACIÓN<br>N° 001 · VIVAGO</p>
+  </div>
+
+  <a class="c-hero-scrollcue" href="#journey" aria-label="Bajar: comienza el viaje"><span>Zarpa</span><i></i></a>
+</section>
+
+<!-- ═══════════════ JOURNEY — EL SCROLL ES EL VIAJE ═══════════════ -->
+<section class="journey" id="journey" aria-label="El viaje: de Cartagena a las islas">
+  <div class="journey-stage">
+
+    <div class="journey-layer">
+      <img src="index_files/Cartagena_principal.jpeg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="journey-layer">
+      <img src="index_files/city.png" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="journey-layer">
+      <img src="index_files/baru+islas.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="journey-layer">
+      <img src="index_files/playablanca.png" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <svg class="journey-route" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M1180 820 C 900 700, 980 480, 760 430 S 420 380, 300 220 S 180 90, 90 60" />
+      <circle cx="1180" cy="820" r="5" fill="#7FE0E3"/>
+      <circle cx="300" cy="220" r="5" fill="#ECDABE"/>
+      <circle cx="90" cy="60" r="5" fill="#FF7A59"/>
+    </svg>
+
+    <div class="journey-sea"></div>
+    <div class="journey-waves"></div>
+
+    <div class="journey-rail" aria-hidden="true">
+      <span class="boat">⛵</span>
+      <div class="track"><i></i></div>
+      <div class="stops">
+        <b style="top:2%">CARTAGENA</b>
+        <b style="top:26%">BAHÍA</b>
+        <b style="top:52%">MAR</b>
+        <b style="top:78%">ISLAS</b>
+        <b style="top:98%">EXPERIENCIAS</b>
       </div>
-      <div class="hero-stats">
-        <div><b id="statTours">50+</b><span>Tours disponibles</span></div>
-        <div><b id="statYears">30+</b><span>Años de experiencia</span></div>
-        <div><b>4.8</b><span>Calificación promedio</span></div>
+    </div>
+
+    <div class="journey-copy">
+      <div class="j-stage is-on" data-align="center">
+        <span class="j-kicker">Ruta 001 · Zarpe</span>
+        <h2>EL CARIBE<br>SE NAVEGA<br>A TU MANERA</h2>
+        <p>Sigue bajando: esta página es una travesía. Primero la ciudad, luego la bahía, después el mar abierto.</p>
+      </div>
+
+      <div class="j-stage" data-align="center">
+        <span class="j-kicker">Carta de navegación</span>
+        <p class="j-coords"><b>10°23' N</b> · latitud norte<br><b>75°30' W</b> · longitud oeste<br>CARTAGENA DE INDIAS · COLOMBIA</p>
+      </div>
+
+      <div class="j-stage" data-align="center">
+        <span class="j-kicker">Primera escala</span>
+        <h3>Empieza por tierra.</h3>
+        <p>Murallas de piedra coralina, balcones coloniales y callejones con flores: la ciudad merece su propio día.</p>
+        <div class="j-chips">
+          <button type="button" class="j-chip" data-filtro="cultura">Ciudad Amurallada</button>
+          <button type="button" class="j-chip" data-filtro="cultura">Getsemaní</button>
+          <button type="button" class="j-chip" data-filtro="cultura">San Felipe</button>
+        </div>
+      </div>
+
+      <div class="j-stage" data-align="center">
+        <span class="j-kicker">Segunda escala</span>
+        <h3>O déjate llevar.</h3>
+        <p>Cuarenta y cinco minutos de lancha separan la torre del reloj de las aguas más turquesas del país.</p>
+        <div class="j-chips">
+          <button type="button" class="j-chip" data-filtro="islas">Barú</button>
+          <button type="button" class="j-chip" data-filtro="islas">Rosario</button>
+          <button type="button" class="j-chip" data-filtro="islas">Tierra Bomba</button>
+          <button type="button" class="j-chip" data-filtro="islas">Isla del Sol</button>
+        </div>
+      </div>
+
+      <div class="j-stage" data-align="center">
+        <span class="j-kicker">Destino final</span>
+        <h3>Tu ruta desemboca aquí.</h3>
+        <p>Elige cómo quieres vivir el Caribe: cada experiencia es un cupo real, listo para zarpar.</p>
+        <div class="j-chips">
+          <a class="j-chip" href="#caribe">Ver destinos</a>
+          <a class="j-chip" href="#experiencias">Explorar experiencias</a>
+        </div>
       </div>
     </div>
   </div>
-  <a class="hero-scroll-cue" href="#tours" aria-label="Bajar a la sección de tours"><span></span></a>
 </section>
 
-
-<!-- ═══════════════ MARQUEE DESTINOS ═══════════════ -->
-<div class="marquee"><div class="marquee-track" id="marqueeTrack"><span><b>01</b> Punta Arena</span><span><b>02</b> Isla del Sol</span><span><b>03</b> Pao Pao</span><span><b>04</b> Isla Palma</span><span><b>05</b> Múcura y Tintipán</span><span><b>06</b> Playa Blanca Barú</span><span><b>07</b> Playa Tranquila</span><span><b>08</b> Barú + Islas del Rosario</span><span><b>09</b> Palmarito Tierra Bomba</span><span><b>10</b> Ancestral Tierra Bomba</span><span><b>11</b> Fénix Beach</span><span><b>12</b> Top 3 Islas</span><span><b>13</b> Tour 5 Islas</span><span><b>14</b> 4 Islas Terrestre</span><span><b>15</b> Catamarán Bona Vida</span><span><b>16</b> Sunset Catamarán</span><span><b>17</b> Noche Blanca</span><span><b>18</b> Cena en Yate</span><span><b>19</b> Cena Fénix Beach</span><span><b>20</b> Sunset en Barú</span><span><b>21</b> City Tour Histórico</span><span><b>22</b> Chiva Rumbera</span><span><b>23</b> Manglares + Volcán del Totumo</span><span><b>24</b> Barranquilla</span><span><b>25</b> Santa Marta</span><span><b>26</b> Tour Cuatrimotos</span><span><b>27</b> San Basilio de Palenque</span><span><b>28</b> Tour Gastronómico</span><span><b>29</b> Volcán del Totumo</span><span><b>30</b> Bora Bora Beach Club</span><span><b>31</b> Walking Tour</span><span><b>32</b> Aviario Nacional de Colombia</span><span><b>33</b> Manglares + Jardín Botánico</span><span><b>34</b> Traslado Aeropuerto - Hotel</span><span><b>35</b> Tour Panorámico</span><span><b>36</b> Tour Popular Cartagena</span><span><b>37</b> Shopping Tour</span><span><b>38</b> Makarela</span><span><b>39</b> Santa María</span><span><b>40</b> Recuca</span><span><b>41</b> Lancha Semirígida Racing</span><span><b>42</b> Yate Ámbar II</span><span><b>43</b> Yate Azimut</span><span><b>44</b> Yate Palladium 46ft</span><span><b>45</b> Catamarán Bona Vida</span><span><b>46</b> Jet Ski</span><span><b>47</b> Tuna 38 ft</span><span><b>48</b> Catamarán 45 ft</span><span><b>49</b> León de Atlas 30 ft</span><span><b>50</b> Catamarán a Vela 40 ft (Chicote)</span><span><b>51</b> Copacetic 64 ft</span><span><b>01</b> Punta Arena</span><span><b>02</b> Isla del Sol</span><span><b>03</b> Pao Pao</span><span><b>04</b> Isla Palma</span><span><b>05</b> Múcura y Tintipán</span><span><b>06</b> Playa Blanca Barú</span><span><b>07</b> Playa Tranquila</span><span><b>08</b> Barú + Islas del Rosario</span><span><b>09</b> Palmarito Tierra Bomba</span><span><b>10</b> Ancestral Tierra Bomba</span><span><b>11</b> Fénix Beach</span><span><b>12</b> Top 3 Islas</span><span><b>13</b> Tour 5 Islas</span><span><b>14</b> 4 Islas Terrestre</span><span><b>15</b> Catamarán Bona Vida</span><span><b>16</b> Sunset Catamarán</span><span><b>17</b> Noche Blanca</span><span><b>18</b> Cena en Yate</span><span><b>19</b> Cena Fénix Beach</span><span><b>20</b> Sunset en Barú</span><span><b>21</b> City Tour Histórico</span><span><b>22</b> Chiva Rumbera</span><span><b>23</b> Manglares + Volcán del Totumo</span><span><b>24</b> Barranquilla</span><span><b>25</b> Santa Marta</span><span><b>26</b> Tour Cuatrimotos</span><span><b>27</b> San Basilio de Palenque</span><span><b>28</b> Tour Gastronómico</span><span><b>29</b> Volcán del Totumo</span><span><b>30</b> Bora Bora Beach Club</span><span><b>31</b> Walking Tour</span><span><b>32</b> Aviario Nacional de Colombia</span><span><b>33</b> Manglares + Jardín Botánico</span><span><b>34</b> Traslado Aeropuerto - Hotel</span><span><b>35</b> Tour Panorámico</span><span><b>36</b> Tour Popular Cartagena</span><span><b>37</b> Shopping Tour</span><span><b>38</b> Makarela</span><span><b>39</b> Santa María</span><span><b>40</b> Recuca</span><span><b>41</b> Lancha Semirígida Racing</span><span><b>42</b> Yate Ámbar II</span><span><b>43</b> Yate Azimut</span><span><b>44</b> Yate Palladium 46ft</span><span><b>45</b> Catamarán Bona Vida</span><span><b>46</b> Jet Ski</span><span><b>47</b> Tuna 38 ft</span><span><b>48</b> Catamarán 45 ft</span><span><b>49</b> León de Atlas 30 ft</span><span><b>50</b> Catamarán a Vela 40 ft (Chicote)</span><span><b>51</b> Copacetic 64 ft</span></div></div>
-
-<!-- ═══════════════ TOURS DESTACADOS ═══════════════ -->
-<section class="section" id="tours">
+<!-- ═══════════════ SELECTOR — ¿QUÉ CARIBE QUIERES VIVIR? ═══════════════ -->
+<section class="section caribe-selector" id="caribe">
   <div class="container">
     <div class="section-head">
       <div>
-        <span class="eyebrow">Pases de embarque · Tours</span>
-        <h2>Los tours más pedidos</h2>
-        <p>Cada ticket es un cupo real: desliza para descubrir las salidas favoritas de nuestros viajeros esta temporada.</p>
+        <span class="eyebrow">Elige tu rumbo</span>
+        <h2>¿Qué Caribe quieres vivir?</h2>
+        <p>Cuatro rumbos, un mismo mar. Toca uno y la página entera navega contigo: filtra experiencias, ajusta el mapa y actualiza al concierge.</p>
       </div>
-      <a href="tours.html" class="see-all">Ver todos los tours ↗</a>
     </div>
+
+    <div class="selector-grid">
+      <button type="button" class="sel-tile" data-caribe="islas" aria-pressed="false">
+        <img src="index_files/isladelsol.jpg" alt="Islas del Rosario, arena blanca y agua turquesa" loading="lazy" decoding="async">
+        <span class="sel-body">
+          <span class="sel-num">RUTA 01</span>
+          <span class="sel-name">ISLAS</span>
+          <ul class="sel-lines"><li>Arena blanca</li><li>Agua turquesa</li><li>Todo el día</li></ul>
+          <span class="sel-go">Navegar este rumbo →</span>
+        </span>
+      </button>
+      <button type="button" class="sel-tile" data-caribe="aventura" aria-pressed="false">
+        <img src="index_files/Manglares.jpg" alt="Manglares de La Boquilla" loading="lazy" decoding="async">
+        <span class="sel-body">
+          <span class="sel-num">RUTA 02</span>
+          <span class="sel-name">AVENTURA</span>
+          <ul class="sel-lines"><li>Volcán</li><li>Manglares</li><li>Adrenalina</li></ul>
+          <span class="sel-go">Navegar este rumbo →</span>
+        </span>
+      </button>
+      <button type="button" class="sel-tile" data-caribe="cultura" aria-pressed="false">
+        <img src="index_files/walking.webp" alt="Calles coloniales del Centro Histórico" loading="lazy" decoding="async">
+        <span class="sel-body">
+          <span class="sel-num">RUTA 03</span>
+          <span class="sel-name">CULTURA</span>
+          <ul class="sel-lines"><li>Cartagena</li><li>Palenque</li><li>Gastronomía</li></ul>
+          <span class="sel-go">Navegar este rumbo →</span>
+        </span>
+      </button>
+      <button type="button" class="sel-tile" data-caribe="privado" aria-pressed="false">
+        <img src="index_files/yate-ambar.png" alt="Yate privado en la bahía" loading="lazy" decoding="async">
+        <span class="sel-body">
+          <span class="sel-num">RUTA 04</span>
+          <span class="sel-name">PRIVADO</span>
+          <ul class="sel-lines"><li>Yates</li><li>Catamaranes</li><li>Lanchas</li></ul>
+          <span class="sel-go">Navegar este rumbo →</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="sel-result">
+      <p>Rumbo activo: <b id="rumboActivo">Todos los Caribes</b> — mira las experiencias filtradas más abajo.</p>
+      <a href="tours.html" class="see-all" id="selCta">Explorar en el catálogo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CARTA DE NAVEGACIÓN ═══════════════ -->
+<div class="carta" id="carta" role="region" aria-label="Carta de navegación: todos los destinos">
+  <div class="carta-head">
+    <h2>Carta de navegación</h2>
+    <span id="cartaCount">51 destinos · pasa el cursor para explorar</span>
+  </div>
+  <div class="marquee" style="background:none;border:0;box-shadow:none;mask-image:none;-webkit-mask-image:none;padding:0">
+    <div class="carta-track" id="cartaTrack"><!-- generado desde el catálogo real --></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MAPA — ¿DÓNDE QUIERES PERDERTE? ═══════════════ -->
+<section class="section mapa-section" id="mapa">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Coordenadas reales · Catálogo VivaGo</span>
+        <h2>¿Dónde quieres perderte?</h2>
+        <p>Cartografía viva de la bahía y el archipiélago. Cada punto es una experiencia real con precio y duración publicados.</p>
+      </div>
+    </div>
+
+    <div class="mapa-wrap">
+      <div class="mapa-board" id="mapaBoard">
+        <svg class="coast" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
+          <!-- agua -->
+          <rect width="800" height="600" fill="transparent"/>
+          <!-- tierra firme (NE) -->
+          <path d="M520 0 L800 0 L800 240 C 720 260, 660 210, 600 190 C 545 172, 520 120, 500 80 C 488 52, 500 20, 520 0 Z"
+                fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- península Bocagrande -->
+          <path d="M468 150 C 492 176, 486 216, 462 246 C 444 268, 420 272, 404 258 C 388 242, 398 214, 416 196 C 434 178, 450 160, 468 150 Z"
+                fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- Tierra Bomba -->
+          <path d="M400 250 C 436 262, 458 296, 452 330 C 447 356, 420 368, 396 356 C 372 344, 360 314, 370 288 C 378 266, 388 254, 400 250 Z"
+                fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- Barú (península sur) -->
+          <path d="M330 340 C 372 352, 396 396, 380 442 C 366 482, 320 502, 280 486 C 244 472, 236 428, 256 394 C 274 364, 300 348, 330 340 Z"
+                fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- archipiélagos (Rosario / San Bernardo) -->
+          <ellipse cx="270" cy="270" rx="16" ry="10" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <ellipse cx="232" cy="300" rx="11" ry="7" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <ellipse cx="205" cy="332" rx="9" ry="6" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <ellipse cx="150" cy="470" rx="13" ry="8" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <ellipse cx="112" cy="500" rx="9" ry="6" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- Isla Palma / Tintipán bajitas -->
+          <path d="M60 520 C 96 512, 130 522, 150 542 C 128 556, 84 558, 58 544 C 48 538, 50 526, 60 520 Z" fill="#F2EBDB" stroke="#DFDFCB" stroke-width="2"/>
+          <!-- Ciénaga de Totumo (arriba derecha) -->
+          <path d="M690 40 C 724 32, 756 44, 764 68 C 770 88, 750 102, 724 98 C 700 94, 682 74, 690 40 Z" fill="#CFEAEA" stroke="#9FD4D4" stroke-width="2"/>
+          <!-- rosa de los vientos -->
+          <g transform="translate(742,548)">
+            <circle r="26" fill="rgba(255,255,255,.7)" stroke="#164652" stroke-opacity=".3"/>
+            <path d="M0 -20 L4 0 L0 20 L-4 0 Z" fill="#164652" opacity=".65"/>
+            <path d="M-20 0 L0 -4 L20 0 L0 4 Z" fill="#164652" opacity=".35"/>
+            <text y="-32" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#164652">N</text>
+          </g>
+          <!-- escala -->
+          <g transform="translate(30,566)" font-family="JetBrains Mono" font-size="10" fill="#164652" opacity=".7">
+            <line x1="0" y1="0" x2="90" y2="0" stroke="#164652" stroke-width="2"/>
+            <line x1="0" y1="-4" x2="0" y2="4" stroke="#164652" stroke-width="2"/>
+            <line x1="90" y1="-4" x2="90" y2="4" stroke="#164652" stroke-width="2"/>
+            <text x="100" y="4">≈ 40 km</text>
+          </g>
+          <!-- ruta marítima animada Cartagena → Rosario → Barú → San Bernardo -->
+          <path class="mapa-route" d="M470 170 C 420 230, 350 250, 285 275 C 235 294, 200 330, 175 380 C 155 420, 140 450, 125 490 C 115 515, 95 530, 70 540"/>
+        </svg>
+        <!-- puntos interactivos generados desde allTours -->
+      </div>
+
+      <aside class="mapa-panel" id="mapaPanel" aria-live="polite"><!-- panel renderizado por JS --></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ EXPERIENCIAS DESTACADAS ═══════════════ -->
+<section class="section" id="experiencias">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow" id="expCount">Salidas más pedidas esta temporada</span>
+        <h2>Experiencias destacadas</h2>
+        <p>Cada ticket es un cupo real: toca cualquiera para ver todo el detalle y reservar al instante por WhatsApp.</p>
+      </div>
+      <a href="tours.html" class="see-all" id="expCta">Ver todos los tours</a>
+    </div>
+
+    <div class="filter-state" id="filterState">
+      <b>Islas</b>
+      <button type="button" id="filterClear">Quitar filtro ×</button>
+    </div>
+
     <div class="rail" id="tourRail"></div>
   </div>
 </section>
 
-<!-- ═══════════════ ALQUILER DESTACADO ═══════════════ -->
-<section class="section sand" id="alquiler">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Pases de embarque · Alquiler</span>
-        <h2>Lanchas, yates y catamaranes</h2>
-        <p>Reserva tu propia embarcación por día o por atardecer, con o sin tripulación, para explorar la bahía a tu ritmo.</p>
-      </div>
-      <a href="alquiler.html" class="see-all">Ver todo el alquiler ↗</a>
+<!-- ═══════════════ MANIFIESTO DE MARCA ═══════════════ -->
+<section class="manifiesto" aria-label="Manifiesto VivaGo">
+  <div class="manifiesto-inner">
+    <div>
+      <span class="j-kicker">Manifiesto</span>
+      <h2>No vendemos tours.<br><em>Diseñamos cómo quieres recordar Cartagena.</em></h2>
+      <p class="lead">Un viaje no se mide en kilómetros sino en momentos que se quedan. Por eso cada experiencia VivaGo se arma alrededor de lo que tú quieres sentir, no de lo que tenemos ganas de vender.</p>
+      <ol class="palabras">
+        <li><span class="num">01</span><span class="word">Descubrir</span><span class="desc">la ciudad, el manglar, el primer pez de colores</span></li>
+        <li><span class="num">02</span><span class="word">Navegar</span><span class="desc">bahía adentro, con el viento a favor</span></li>
+        <li><span class="num">03</span><span class="word">Sentir</span><span class="desc">el sol en la piel y la música en la sangre</span></li>
+        <li><span class="num">04</span><span class="word">Recordar</span><span class="desc">para siempre, como solo se recuerda el Caribe</span></li>
+      </ol>
     </div>
-    <div class="rail" id="rentalRail"></div>
+    <div class="manifiesto-photo">
+      <div class="frame">
+        <img src="index_files/sunsetbaru.jpg" alt="Atardecer dorado sobre el mar Caribe en Barú" loading="lazy" decoding="async">
+      </div>
+      <span class="manifiesto-caption">SUNSET · BARÚ · 10°13' N</span>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════ RESEÑAS (Firebase) ═══════════════ -->
-<section class="section" id="resenas">
+<!-- ═══════════════ MOODS — ¿CÓMO TE QUIERES SENTIR? ═══════════════ -->
+<section class="section moods" id="moods">
   <div class="container">
     <div class="section-head">
       <div>
-        <span class="eyebrow">Reseñas en vivo</span>
-        <h2>Lo que dicen nuestros viajeros</h2>
-        <p>Comentarios reales, publicados en tiempo real por turistas que ya navegaron con nosotros.</p>
+        <span class="eyebrow">Navega por estado de ánimo</span>
+        <h2>¿Cómo te quieres sentir?</h2>
+        <p>Dinos tu estado de ánimo y dejamos las experiencias listas. Funciona igual que el selector de rumbos.</p>
+      </div>
+    </div>
+
+    <div class="mood-grid">
+      <button type="button" class="mood-card" data-mood="desconectar" aria-pressed="false">
+        <span class="mood-word">Desconectar</span>
+        <ul class="mood-list"><li>Playas</li><li>Islas</li><li>Catamarán</li></ul>
+        <span class="mood-go">Filtrar experiencias →</span>
+      </button>
+      <button type="button" class="mood-card" data-mood="vivir" aria-pressed="false">
+        <span class="mood-word">Vivir</span>
+        <ul class="mood-list"><li>Chiva rumbera</li><li>Aventura</li><li>Cuatrimotos</li></ul>
+        <span class="mood-go">Filtrar experiencias →</span>
+      </button>
+      <button type="button" class="mood-card" data-mood="compartir" aria-pressed="false">
+        <span class="mood-word">Compartir</span>
+        <ul class="mood-list"><li>Parejas</li><li>Familia</li><li>Amigos</li></ul>
+        <span class="mood-go">Filtrar experiencias →</span>
+      </button>
+      <button type="button" class="mood-card" data-mood="celebrar" aria-pressed="false">
+        <span class="mood-word">Celebrar</span>
+        <ul class="mood-list"><li>Yates</li><li>Sunset</li><li>Privados</li></ul>
+        <span class="mood-go">Filtrar experiencias →</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TRIP BUILDER ═══════════════ -->
+<section class="section builder" id="tripBuilder">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Trip Builder · Tu día en tres pasos</span>
+        <h2>Construye tu día en Cartagena</h2>
+        <p>Responde tres preguntas y armamos un itinerario hora a hora con una experiencia real del catálogo.</p>
+      </div>
+    </div>
+
+    <div class="builder-steps">
+      <fieldset class="b-step" data-step="hora" style="border:1px solid var(--line-soft);margin:0">
+        <legend class="b-q" data-n="1">¿A qué hora?</legend>
+        <div class="b-opts"></div>
+      </fieldset>
+      <fieldset class="b-step" data-step="vive" style="border:1px solid var(--line-soft);margin:0">
+        <legend class="b-q" data-n="2">¿Qué quieres vivir?</legend>
+        <div class="b-opts"></div>
+      </fieldset>
+      <fieldset class="b-step" data-step="quien" style="border:1px solid var(--line-soft);margin:0">
+        <legend class="b-q" data-n="3">¿Con quién viajas?</legend>
+        <div class="b-opts"></div>
+      </fieldset>
+    </div>
+
+    <div class="builder-result" id="tbResult" aria-live="polite">
+      <div class="builder-reco" id="tbReco"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ALQUILER PREMIUM ═══════════════ -->
+<section class="section rental-premium" id="alquiler">
+  <div class="container">
+    <div class="rental-head-big">
+      <span class="eyebrow" style="color:#7A5A22">Flota propia · Capitán incluido</span>
+      <h2 style="margin-top:14px">
+        <span>TU BARCO.</span>
+        <span class="it">TU RUTA.</span>
+        <span>TU DÍA.</span>
+      </h2>
+      <p style="max-width:520px;color:var(--ink-60);margin-top:20px;line-height:1.7">Lanchas rápidas, yates de lujo y catamaranes con tripulación. Elige la embarcación y nosotros ponemos el mar.</p>
+      <span class="rental-note">Combustible y seguro según embarcación · Confirmación por WhatsApp</span>
+    </div>
+    <div class="rail" id="rentalRail" style="margin-top:44px"></div>
+    <div style="text-align:right;margin-top:6px">
+      <a href="alquiler.html" class="see-all" id="rentalCta">Ver toda la flota</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VIVAGO CONCIERGE ═══════════════ -->
+<section class="concierge" id="concierge">
+  <div class="concierge-inner">
+    <div>
+      <span class="eyebrow">VivaGo Concierge · IA con datos reales</span>
+      <h2>Cuéntanos cómo quieres <em>vivir Cartagena.</em></h2>
+      <p class="lead">Nuestro concierge digital conoce cada precio, horario y detalle del catálogo. Te recomienda solo experiencias reales y te lleva a reservar en segundos.</p>
+      <div class="quick-opts">
+        <button type="button" class="qopt" data-msg="Quiero playa y relax. ¿Qué experiencias del catálogo me recomiendan para desconectarme?">
+          Quiero playa y relax <small>RUMBO 01</small>
+        </button>
+        <button type="button" class="qopt" data-msg="Quiero aventura. ¿Cuáles son las experiencias más llenas de adrenalina que tienen?">
+          Quiero aventura <small>RUMBO 02</small>
+        </button>
+        <button type="button" class="qopt" data-msg="Busco algo romántico para mi pareja y yo. ¿Qué nos recomiendan, idealmente al atardecer?">
+          Quiero algo romántico <small>SUNSET</small>
+        </button>
+        <button type="button" class="qopt" data-msg="Viajo con mi familia, incluimos niños. ¿Qué planes del catálogo nos quedan mejor?">
+          Viajo con mi familia <small>FAMILIA</small>
+        </button>
+      </div>
+    </div>
+    <div class="concierge-side" aria-hidden="true">
+      <div class="concierge-card">
+        <div class="cc-msg">
+          <span class="cc-avatar">V</span>
+          <div class="cc-bubble">¡Perfecto! Para un día de playa y relax les recomiendo:</div>
+        </div>
+        <div class="cc-recos">
+          <span class="cc-reco"><b>Isla del Sol</b><span>$390.000</span></span>
+          <span class="cc-reco"><b>Bora Bora Beach Club</b><span>$390.000</span></span>
+          <span class="cc-reco"><b>Fénix Beach</b><span>$195.000</span></span>
+        </div>
+        <p class="concierge-note">Ejemplo real · precios publicados en el catálogo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ VIVA PASSPORT ═══════════════ -->
+<section class="section passport" id="passport">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">VivaGo Passport · Sellos del viajero</span>
+        <h2>Tu pasaporte del Caribe</h2>
+        <p>Cada experiencia que exploras estampa su sello aquí, en este dispositivo. Sin cuentas, sin registros: tu bitácora es tuya.</p>
+      </div>
+    </div>
+
+    <div class="pp-meter">
+      <span id="ppCount">0 de 8 sellos</span>
+      <span class="bar"><i id="ppBarFill" style="--pp:0"></i></span>
+    </div>
+
+    <div class="passport-book" id="passportBook"><!-- páginas generadas por JS --></div>
+
+    <p class="pp-foot" style="margin-top:26px">Los sellos se guardan localmente en tu navegador (localStorage). Próximamente podrán sincronizarse con tu reserva y desbloquear insignias exclusivas.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ ELLOS YA NAVEGARON (reseñas Firebase) ═══════════════ -->
+<section class="section dim" id="resenas">
+  <div class="container">
+    <div class="rating-band">
+      <div class="rb"><b id="avgRating">4.8</b><span>Calificación media del catálogo</span></div>
+      <div class="rb"><b>★★★★★</b><span>Reseñas verificadas de viajeros</span></div>
+      <div class="rb"><b>100%</b><span>Comentarios publicados en vivo</span></div>
+    </div>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Bitácora de viajeros</span>
+        <h2>Ellos ya navegaron.</h2>
+        <p>Comentarios reales, publicados en tiempo real por turistas que ya zarparon con nosotros. Deja el tuyo.</p>
       </div>
     </div>
     <div class="reviews-wrap">
@@ -146,14 +587,14 @@
   </div>
 </section>
 
-<!-- ═══════════════ REDES SOCIALES ═══════════════ -->
-<section class="section dim" id="redes">
+<!-- ═══════════════ REDES — EL CARIBE EN VERTICAL ═══════════════ -->
+<section class="section" id="redes">
   <div class="container">
     <div class="section-head">
       <div>
         <span class="eyebrow">Pase de abordaje social</span>
-        <h2>Síguenos antes de zarpar</h2>
-        <p>Mira nuestras publicaciones y perfiles directamente desde la página.</p>
+        <h2>El Caribe también se vive en vertical.</h2>
+        <p>Síguenos antes de zarpar: reels del mar, sunsets en vivo y salidas diarias desde la bahía.</p>
       </div>
     </div>
 
@@ -168,7 +609,6 @@
             <span>@vivagoexperience</span>
           </div>
         </div>
-
         <div class="social-preview-embed social-preview-facebook-plugin">
           <div class="fb-page"
                data-href="https://www.facebook.com/profile.php?id=61553201123223"
@@ -179,20 +619,14 @@
                data-adapt-container-width="true"
                data-hide-cover="false"
                data-show-facepile="false">
-            <blockquote cite="https://www.facebook.com/profile.php?id=61553201123223"
-                        class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/profile.php?id=61553201123223" class="fb-xfbml-parse-ignore">
               <a href="https://www.facebook.com/profile.php?id=61553201123223">VivaGo Experience</a>
             </blockquote>
           </div>
         </div>
-
-        <a class="social-preview-link"
-           href="https://www.facebook.com/profile.php?id=61553201123223"
-           target="_blank"
-           rel="noopener noreferrer">
-          Ver en Facebook ↗
-        </a>
+        <a class="social-preview-link" href="https://www.facebook.com/profile.php?id=61553201123223" target="_blank" rel="noopener noreferrer">Ver en Facebook ↗</a>
       </article>
+
       <!-- INSTAGRAM -->
       <article class="social-preview-card social-preview-instagram">
         <div class="social-preview-head">
@@ -202,19 +636,13 @@
             <span>@vivagoexperience</span>
           </div>
         </div>
-
         <div class="social-preview-embed">
           <blockquote class="instagram-media"
             data-instgrm-permalink="https://www.instagram.com/vivagoexperience/"
             data-instgrm-version="14">
           </blockquote>
         </div>
-
-        <a class="social-preview-link"
-           href="https://www.instagram.com/vivagoexperience/"
-           target="_blank" rel="noopener noreferrer">
-          Ver en Instagram ↗
-        </a>
+        <a class="social-preview-link" href="https://www.instagram.com/vivagoexperience/" target="_blank" rel="noopener noreferrer">Ver en Instagram ↗</a>
       </article>
 
       <!-- TIKTOK -->
@@ -226,64 +654,76 @@
             <span>@vivagoexperience</span>
           </div>
         </div>
-
         <div class="social-preview-embed social-preview-tiktok-embed">
           <blockquote class="tiktok-embed"
             cite="https://www.tiktok.com/@vivagoexperience"
             data-unique-id="vivagoexperience"
             data-embed-type="creator">
             <section>
-              <a target="_blank"
-                 href="https://www.tiktok.com/@vivagoexperience"
-                 rel="noopener noreferrer">
-                @vivagoexperience
-              </a>
+              <a target="_blank" href="https://www.tiktok.com/@vivagoexperience" rel="noopener noreferrer">@vivagoexperience</a>
             </section>
           </blockquote>
         </div>
-
-        <a class="social-preview-link"
-           href="https://www.tiktok.com/@vivagoexperience"
-           target="_blank" rel="noopener noreferrer">
-          Ver en TikTok ↗
-        </a>
+        <a class="social-preview-link" href="https://www.tiktok.com/@vivagoexperience" target="_blank" rel="noopener noreferrer">Ver en TikTok ↗</a>
       </article>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>VivaGo Experience</h4>
-        <p>Agencia local de tours y alquiler náutico en Cartagena de Indias. Reserva  y recibe tu pase de embarque al instante.</p>
-        <div class="footer-social" id="footerSocial"></div>
-      </div>
-      <div>
-        <h4>Explorar</h4>
-        <ul>
-          <li><a href="tours.html">Todos los tours</a></li>
-          <li><a href="alquiler.html">Todo el alquiler</a></li>
-          <li><a href="#resenas">Reseñas de viajeros</a></li>
-          <li><a href="#redes">Nuestras redes</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <ul>
-          <li>📍 Cartagena de Indias, Colombia</li>
-          <li>📱 WhatsApp: escríbenos por cualquier tour</li>
-          <li>✉️ Respuesta en minutos</li>
-        </ul>
-      </div>
+<!-- ═══════════════ CTA FINAL ═══════════════ -->
+<section class="final-cta" aria-label="Reserva tu experiencia">
+  <div class="fc-bg" aria-hidden="true"></div>
+  <div class="fc-shade"></div>
+  <div class="fc-inner">
+    <span class="j-kicker" style="justify-content:center;display:flex;color:#FFC98A">Último llamado a bordo</span>
+    <h2 style="margin-top:18px">El mar no espera.<br><em>Tu día en el Caribe empieza con un mensaje.</em></h2>
+    <p>Escríbenos por WhatsApp: te confirmamos disponibilidad, precios reales y recibes tu pase de embarque al instante.</p>
+    <a class="btn btn-primary" href="https://wa.me/573122207263?text=%C2%A1Hola!%20Quiero%20reservar%20una%20experiencia%20con%20VivaGo%20Experience." target="_blank" rel="noopener">¡Reserva Ahora! ↗</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER EDITORIAL ═══════════════ -->
+<footer class="footer-editorial">
+  <p class="footer-giant" aria-hidden="true">Nos vemos en <em>el Caribe.</em></p>
+  <div class="footer-cols">
+    <div>
+      <h4>VivaGo Experience</h4>
+      <p>El Caribe se navega a tu manera. Agencia local de tours y alquiler náutico en Cartagena de Indias — reservas directas, sin intermediarios.</p>
+      <div class="footer-social" id="footerSocial"></div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> VivaGo Experience · Todos los derechos reservados</span>
-      <span>Hecho para navegar el Caribe 🌴</span>
+    <div>
+      <h4>Navegar</h4>
+      <ul>
+        <li><a href="#experiencias">Experiencias</a></li>
+        <li><a href="#mapa">Mapa de destinos</a></li>
+        <li><a href="#tripBuilder">Trip Builder</a></li>
+        <li><a href="alquiler.html">Alquiler náutico</a></li>
+        <li><a href="tours.html">Catálogo completo</a></li>
+      </ul>
     </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li>Cartagena de Indias, Colombia</li>
+        <li><a href="https://wa.me/573122207263" target="_blank" rel="noopener">WhatsApp · respuesta en minutos</a></li>
+        <li>Pase de embarque inmediato</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#resenas">Reseñas verificadas</a></li>
+        <li>Precios sujetos a temporada</li>
+        <li>Disponibilidad confirmada por WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> VivaGo Experience · Todos los derechos reservados</span>
+    <span>10°23' N · 75°30' W · HECHO PARA NAVEGAR</span>
   </div>
 </footer>
 
@@ -296,15 +736,14 @@
 <script src="assets/js/social-data.js"></script>
 <script src="assets/js/social.js"></script>
 <script src="assets/js/home.js"></script>
+<script src="assets/js/experience.js"></script>
 <script src="assets/js/motion.js"></script>
 <script src="assets/js/promo-popup.js"></script>
 <script src="assets/js/vivago-chat.js"></script>
 <script type="module" src="assets/js/firebase-init.js"></script>
 <script src="assets/js/comments.js"></script>
-<!-- Facebook SDK: necesario para renderizar el Page Plugin (mismo criterio
-     que Instagram/TikTok: widget oficial, sin token, apuntado al perfil) -->
+<!-- Facebook SDK: necesario para renderizar el Page Plugin -->
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v23.0"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v23.0"></script>
 </body>
 </html>

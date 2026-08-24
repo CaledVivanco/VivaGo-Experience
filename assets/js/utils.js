@@ -127,9 +127,10 @@ document.addEventListener('DOMContentLoaded', injectFooterSocialIcons);
 (function () {
   'use strict';
   /* Nombre con espacios/paréntesis → URL codificada.
-     Versión INSTRUMENTAL (voz cancelada) generada a partir del
-     original; el archivo con voz sigue intacto en index_files/. */
-  const SRC = 'index_files/' + encodeURIComponent('La Pollera Colora (Instrumental).wav');
+     Versión SOLO MELODÍA (voz cancelada agresivo M/S + resta de
+     centro) generada desde el original; el archivo con voz sigue
+     intacto en disco. Nombre distinto = sin caché del navegador. */
+  const SRC = 'index_files/' + encodeURIComponent('La Pollera Colora Solo Melodia.wav');
   const VOLUMEN = 0.26;
   const FLAG = 'vgAmbiente';
   let audio = null;

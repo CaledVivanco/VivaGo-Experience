@@ -216,7 +216,7 @@ const allTours = [
     featured: false,
     rating: 4.9,
     img: 'index_files/baru+islas.jpg',
-    precio: '$200.000 COP',
+    precio: '$150.000 COP',
     desc: 'Lo mejor de dos mundos en una sola aventura. Transporte marítimo completo, guía bilingüe, snorkel en el archipiélago, almuerzo típico y paradas fotográficas en las playas y aguas más espectaculares que ofrece la costa caribeña.',
     incluye: [
       'Recogida en hoteles de Bocagrande y Laguito',

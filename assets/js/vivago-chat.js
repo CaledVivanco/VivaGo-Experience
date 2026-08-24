@@ -15,23 +15,126 @@
   const STORAGE_KEY = 'vgai-historial';
   const MAX_HISTORIAL = 40;
 
-  /* ── Estado ─────────────────────────────────────────────────── */
-  const SALUDO_INICIAL = {
-    role: 'assistant',
-    content: '¡Hola! 👋 Soy VivaGo AI, tu asesor de VivaGo Experience. Cuéntame: ¿cuántas personas son, qué presupuesto tienen y qué les antoja — islas, cultura, aventura o alquiler de embarcación?',
-    soloUI: true,
+  /* ── Idioma de la UI (mismo criterio que lang-switcher.js) ──── */
+  const IDIOMAS_UI = ['es', 'en', 'pt', 'fr', 'de', 'it', 'nl', 'zh-CN'];
+
+  function idiomaActual() {
+    let l = '';
+    try { l = localStorage.getItem('vg_lang') || ''; } catch (_) { /* storage bloqueado */ }
+    if (!l) {
+      try {
+        const m = document.cookie.match(/(?:^|; )googtrans=([^;]*)/);
+        if (m) l = decodeURIComponent(m[1]).split('/').filter(Boolean)[1] || '';
+      } catch (_) { /* cookie bloqueada */ }
+    }
+    return IDIOMAS_UI.includes(l) ? l : 'es';
+  }
+
+  /* ── Textos del widget por idioma ───────────────────────────── */
+  const TEXTOS = {
+    es: {
+      saludo: '¡Hola! 👋 Soy VivaGo AI, tu asesor de VivaGo Experience. Cuéntame: ¿cuántas personas son, qué presupuesto tienen y qué les antoja — islas, cultura, aventura o alquiler de embarcación?',
+      chips: ['¿Qué tours tienen?', 'Somos 5 y tenemos $500.000', 'Quiero alquilar algo para 8 personas', '¿Cuál es la opción más económica?'],
+      placeholder: 'Escríbenos… ej: Somos 5 con $500.000',
+      subtitulo: 'Asesor virtual',
+      consultando: '⚓ Consultando el catálogo de VivaGo…',
+      errorRate: 'Has enviado muchos mensajes seguidos. Espera un momento e inténtalo otra vez 🌴',
+      errorGenerico: 'No pude responder ahora mismo. Revisa tu conexión e inténtalo de nuevo.',
+      reintentar: 'Reintentar',
+    },
+    en: {
+      saludo: 'Hi! 👋 I’m VivaGo AI, your advisor at VivaGo Experience. Tell me: how many people are you, what’s your budget, and what are you in the mood for — islands, culture, adventure or boat rental?',
+      chips: ['What tours do you have?', 'There are 5 of us with a $500.000 budget', 'I want to rent something for 8 people', 'What’s the most affordable option?'],
+      placeholder: 'Write to us… e.g.: There are 5 of us with $500.000',
+      subtitulo: 'Virtual advisor',
+      consultando: '⚓ Looking up the VivaGo catalog…',
+      errorRate: 'You’ve sent too many messages in a row. Wait a moment and try again 🌴',
+      errorGenerico: 'I couldn’t answer right now. Check your connection and try again.',
+      reintentar: 'Try again',
+    },
+    pt: {
+      saludo: 'Olá! 👋 Sou o VivaGo AI, seu assessor da VivaGo Experience. Conta pra gente: quantas pessoas são, qual o orçamento e o que desejam — ilhas, cultura, aventura ou aluguel de embarcação?',
+      chips: ['Que passeios vocês têm?', 'Somos 5 e temos $500.000', 'Quero alugar algo para 8 pessoas', 'Qual é a opção mais econômica?'],
+      placeholder: 'Escreva pra gente… ex: Somos 5 com $500.000',
+      subtitulo: 'Assessor virtual',
+      consultando: '⚓ Consultando o catálogo da VivaGo…',
+      errorRate: 'Você enviou muitas mensagens seguidas. Espere um momento e tente de novo 🌴',
+      errorGenerico: 'Não consegui responder agora. Verifique sua conexão e tente de novo.',
+      reintentar: 'Tentar de novo',
+    },
+    fr: {
+      saludo: 'Salut ! 👋 Je suis VivaGo AI, votre conseiller VivaGo Experience. Dites-moi : combien de personnes, quel budget et quelle envie — îles, culture, aventure ou location de bateau ?',
+      chips: ['Quels tours proposez-vous ?', 'Nous sommes 5 avec un budget de $500.000', 'Je veux louer pour 8 personnes', 'Quelle est l’option la plus économique ?'],
+      placeholder: 'Écrivez-nous… ex : Nous sommes 5 avec $500.000',
+      subtitulo: 'Conseiller virtuel',
+      consultando: '⚓ Consultation du catalogue VivaGo…',
+      errorRate: 'Vous avez envoyé trop de messages d’affilée. Attendez un instant et réessayez 🌴',
+      errorGenerico: 'Je n’ai pas pu répondre pour le moment. Vérifiez votre connexion et réessayez.',
+      reintentar: 'Réessayer',
+    },
+    de: {
+      saludo: 'Hallo! 👋 Ich bin VivaGo AI, dein Berater von VivaGo Experience. Sag mir: Wie viele Personen seid ihr, welches Budget habt ihr und wonach steht euch der Sinn — Inseln, Kultur, Abenteuer oder Bootsvermietung?',
+      chips: ['Welche Touren gibt es?', 'Wir sind 5 mit einem Budget von $500.000', 'Ich möchte etwas für 8 Personen mieten', 'Was ist die günstigste Option?'],
+      placeholder: 'Schreib uns… z. B.: Wir sind 5 mit $500.000',
+      subtitulo: 'Virtueller Berater',
+      consultando: '⚓ Der VivaGo-Katalog wird konsultiert…',
+      errorRate: 'Du hast viele Nachrichten hintereinander gesendet. Warte kurz und versuche es erneut 🌴',
+      errorGenerico: 'Ich konnte gerade nicht antworten. Prüfe deine Verbindung und versuche es erneut.',
+      reintentar: 'Erneut versuchen',
+    },
+    it: {
+      saludo: 'Ciao! 👋 Sono VivaGo AI, il vostro consulente VivaGo Experience. Dimmi: quante persone siete, quale budget avete e cosa vi va di fare — isole, cultura, avventura o noleggio di imbarcazioni?',
+      chips: ['Quali tour avete?', 'Siamo in 5 con un budget di $500.000', 'Voglio noleggiare qualcosa per 8 persone', 'Qual è l’opzione più economica?'],
+      placeholder: 'Scriveteci… es: Siamo in 5 con $500.000',
+      subtitulo: 'Consulente virtuale',
+      consultando: '⚓ Consulta del catalogo VivaGo…',
+      errorRate: 'Hai inviato troppi messaggi di fila. Aspetta un momento e riprova 🌴',
+      errorGenerico: 'Non sono riuscito a rispondere ora. Controlla la connessione e riprova.',
+      reintentar: 'Riprova',
+    },
+    nl: {
+      saludo: 'Hoi! 👋 Ik ben VivaGo AI, jouw adviseur van VivaGo Experience. Vertel: met hoeveel personen zijn jullie, wat is je budget en waar hebben jullie zin in — eilanden, cultuur, avontuur of bootverhuur?',
+      chips: ['Welke tours hebben jullie?', 'We zijn met 5 en hebben $500.000', 'Ik wil iets huren voor 8 personen', 'Wat is de goedkoopste optie?'],
+      placeholder: 'Schrijf ons… bijv.: We zijn met 5 en hebben $500.000',
+      subtitulo: 'Virtuele adviseur',
+      consultando: '⚓ De VivaGo-catalogus wordt geraadpleegd…',
+      errorRate: 'Je hebt veel berichten achter elkaar gestuurd. Wacht even en probeer het opnieuw 🌴',
+      errorGenerico: 'Ik kon nu niet antwoorden. Controleer je verbinding en probeer het opnieuw.',
+      reintentar: 'Opnieuw proberen',
+    },
+    'zh-CN': {
+      saludo: '你好！👋 我是 VivaGo AI，VivaGo Experience 的旅游顾问。请告诉我：你们有几个人、预算多少、想体验什么——海岛、文化、冒险还是游艇租赁？',
+      chips: ['你们有哪些行程？', '我们有5人，预算$500.000', '我想租一条8人的船', '哪个选项最实惠？'],
+      placeholder: '给我们留言…例如：我们5人，预算$500.000',
+      subtitulo: '虚拟顾问',
+      consultando: '⚓ 正在查询 VivaGo 目录…',
+      errorRate: '您发送消息太频繁了，请稍等片刻再试 🌴',
+      errorGenerico: '我现在无法回复。请检查您的网络连接后重试。',
+      reintentar: '重试',
+    },
   };
+
+  function textos() { return TEXTOS[idiomaActual()] || TEXTOS.es; }
+
+  /* ── Estado ─────────────────────────────────────────────────── */
+  function saludoActual() {
+    return { role: 'assistant', content: textos().saludo, soloUI: true };
+  }
 
   let historial = cargarHistorial();
   let enviando = false;
   let ui = null;
 
+  /** Carga la conversación real (sin mensajes de saludo viejos) y
+   *  anteponga SIEMPRE el saludo fresco en el idioma activo: así,
+   *  al cambiar de idioma, el mensaje inicial cambia también. */
   function cargarHistorial() {
+    let guardado = [];
     try {
-      const guardado = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
-      if (Array.isArray(guardado) && guardado.length) return guardado;
+      const g = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
+      if (Array.isArray(g)) guardado = g.filter(m => m && !m.soloUI && m.content);
     } catch (_) { /* storage bloqueado */ }
-    return [SALUDO_INICIAL];
+    return [saludoActual(), ...guardado.slice(-MAX_HISTORIAL)];
   }
 
   function guardarHistorial() {
@@ -49,25 +152,29 @@
     const fab = document.createElement('button');
     fab.className = 'vgai-fab';
     fab.id = 'vgaiFab';
+    /* notranslate: evita que Google Translate reescriba el widget y rompa sus botones */
+    fab.classList.add('notranslate');
+    fab.setAttribute('translate', 'no');
     fab.setAttribute('aria-label', 'Abrir VivaGo AI, asesor virtual');
     fab.innerHTML = `${ICON_BOT}<span>VivaGo AI</span><span class="vgai-dot"></span>`;
 
     const panel = document.createElement('div');
-    panel.className = 'vgai-panel';
+    panel.className = 'vgai-panel notranslate';
     panel.id = 'vgaiPanel';
+    panel.setAttribute('translate', 'no');
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Chat con VivaGo AI');
     panel.innerHTML = `
       <div class="vgai-head">
         <div class="vgai-avatar">${ICON_BOT}</div>
-        <div class="vgai-title"><b>VivaGo AI</b><span>Asesor virtual</span></div>
+        <div class="vgai-title"><b>VivaGo AI</b><span>${textos().subtitulo}</span></div>
         <button class="vgai-close" id="vgaiClose" aria-label="Cerrar chat">✕</button>
       </div>
       <div class="vgai-msgs" id="vgaiMsgs" aria-live="polite"></div>
       <div class="vgai-chips" id="vgaiChips"></div>
       <div class="vgai-composer">
         <textarea class="vgai-input" id="vgaiInput" rows="1"
-          placeholder="Escríbenos… ej: Somos 5 con $500.000"
+          placeholder="${textos().placeholder}"
           maxlength="2000" aria-label="Mensaje para VivaGo AI"></textarea>
         <button class="vgai-send" id="vgaiSend" aria-label="Enviar mensaje">${ICON_SEND}</button>
       </div>`;
@@ -94,6 +201,8 @@
    *  en el HTML de la página (ej: el "Asesor IA" del menú). */
   function conectarBotonesEstaticos() {
     document.querySelectorAll('[data-vgai-abrir]').forEach((b) => {
+      b.classList.add('notranslate');
+      b.setAttribute('translate', 'no');
       b.addEventListener('click', (e) => { e.preventDefault(); abrir(); });
     });
   }
@@ -117,11 +226,13 @@
   function abrir() {
     ui.panel.classList.add('open');
     ui.fab.style.display = 'none';
+    document.body.classList.add('vgai-chat-open');
     setTimeout(() => ui.input.focus(), 120);
   }
   function cerrar() {
     ui.panel.classList.remove('open');
     ui.fab.style.display = '';
+    document.body.classList.remove('vgai-chat-open');
   }
 
   function autoAltura() {
@@ -167,19 +278,12 @@
     pintarChips();
   }
 
-  const SUGERENCIAS = [
-    '¿Qué tours tienen?',
-    'Somos 5 y tenemos $500.000',
-    'Quiero alquilar algo para 8 personas',
-    '¿Cuál es la opción más económica?',
-  ];
-
   function pintarChips() {
     // Chips solo al inicio de la conversación real
     const hayConversacion = historial.some(m => !m.soloUI);
     ui.chips.innerHTML = '';
     if (hayConversacion || enviando) return;
-    for (const s of SUGERENCIAS) {
+    for (const s of textos().chips) {
       const b = document.createElement('button');
       b.className = 'vgai-chip';
       b.type = 'button';
@@ -207,7 +311,7 @@
     // Indicadores: "consultando catálogo…" y luego puntos de escritura
     const estado = document.createElement('div');
     estado.className = 'vgai-consultando';
-    estado.textContent = '⚓ Consultando el catálogo de VivaGo…';
+    estado.textContent = textos().consultando;
     ui.msgs.appendChild(estado);
     scrollAbajo();
 
@@ -228,6 +332,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: historial.filter(m => !m.soloUI).slice(-MAX_HISTORIAL).map(m => ({ role: m.role, content: m.content })),
+          idioma: idiomaActual(),
         }),
       });
 
@@ -257,7 +362,7 @@
         if (evento === 'estado') {
           clearTimeout(timerTyping);
           estado.textContent = datos.paso === 'consultando'
-            ? '⚓ Consultando el catálogo de VivaGo…' : '';
+            ? textos().consultando : '';
         } else if (evento === 'delta') {
           clearTimeout(timerTyping);
           typing.style.display = 'none';
@@ -276,8 +381,8 @@
       huboError = true;
       estado.remove(); typing.remove();
       mostrarError(e.message === 'rate'
-        ? 'Has enviado muchos mensajes seguidos. Espera un momento e inténtalo otra vez 🌴'
-        : undefined);
+        ? textos().errorRate
+        : textos().errorGenerico);
     } finally {
       clearTimeout(timerTyping);
       enviando = false;
@@ -293,8 +398,8 @@
       const div = document.createElement('div');
       div.className = 'vgai-error';
       div.innerHTML = `
-        <span>${escapeHTML(mensajeAmigable || 'No pude responder ahora mismo. Revisa tu conexión e inténtalo de nuevo.')}</span><br>
-        <button class="vgai-reintentar" type="button">Reintentar</button>`;
+        <span>${escapeHTML(mensajeAmigable || textos().errorGenerico)}</span><br>
+        <button class="vgai-reintentar" type="button">${textos().reintentar}</button>`;
       ui.msgs.appendChild(div);
       div.querySelector('.vgai-reintentar').addEventListener('click', () => { div.remove(); reintentar(texto); });
       scrollAbajo();

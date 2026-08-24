@@ -29,8 +29,9 @@ function permitir(ip) {
 /* ── Validación de entrada ────────────────────────────────────── */
 const MAX_MENSAJES = 40;
 const MAX_CHARS = 2000;
+const IDIOMAS_UI = new Set(['es', 'en', 'pt', 'fr', 'de', 'it', 'nl', 'zh-CN']);
 
-function validarHistorial(messages) {
+function validarHistorial(messages, idioma) {
   if (!Array.isArray(messages) || !messages.length) return null;
   const limpio = [];
   for (const m of messages.slice(-MAX_MENSAJES)) {
@@ -40,7 +41,7 @@ function validarHistorial(messages) {
     limpio.push({ role: m.role, content: contenido });
   }
   if (!limpio.length || limpio[limpio.length - 1].role !== 'user') return null;
-  return [{ role: 'system', content: vivago.systemPrompt() }, ...limpio];
+  return [{ role: 'system', content: vivago.systemPrompt(idioma) }, ...limpio];
 }
 
 function sse(res, evento, datos) {
@@ -73,14 +74,17 @@ module.exports = async (req, res) => {
     });
   }
   let messages;
+  let idioma;
   try {
-    messages = typeof cuerpo === 'string' ? JSON.parse(cuerpo || '{}').messages : cuerpo.messages;
+    const datos = typeof cuerpo === 'string' ? JSON.parse(cuerpo || '{}') : (cuerpo || {});
+    messages = datos.messages;
+    idioma = IDIOMAS_UI.has(datos.idioma) ? datos.idioma : undefined;
   } catch (_) {
     res.statusCode = 400;
     return res.end(JSON.stringify({ error: 'Cuerpo inválido.' }));
   }
 
-  const historialValido = validarHistorial(messages);
+  const historialValido = validarHistorial(messages, idioma);
   if (!historialValido) {
     res.statusCode = 400;
     return res.end(JSON.stringify({ error: 'Falta el mensaje del cliente.' }));

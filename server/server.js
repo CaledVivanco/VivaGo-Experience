@@ -51,9 +51,11 @@ function rateLimitIA(req, res, next) {
 /* ── Validación de entrada ────────────────────────────────────── */
 const MAX_MENSAJES = 40;
 const MAX_CHARS = 2000;
+const IDIOMAS_UI = new Set(['es', 'en', 'pt', 'fr', 'de', 'it', 'nl', 'zh-CN']);
 
 function validarCuerpo(req, res, next) {
   const { messages } = req.body || {};
+  const idioma = IDIOMAS_UI.has(req.body?.idioma) ? req.body.idioma : undefined;
   if (!Array.isArray(messages) || !messages.length) {
     return res.status(400).json({ error: 'Cuerpo inválido.' });
   }
@@ -71,7 +73,7 @@ function validarCuerpo(req, res, next) {
     return res.status(400).json({ error: 'Falta el mensaje del cliente.' });
   }
   req.historialValido = [
-    { role: 'system', content: vivago.systemPrompt() },
+    { role: 'system', content: vivago.systemPrompt(idioma) },
     ...limpio,
   ];
   next();

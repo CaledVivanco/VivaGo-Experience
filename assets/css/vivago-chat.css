@@ -28,7 +28,7 @@
 }
 
 .vgai-panel{
-  position:fixed; left:18px; bottom:18px; z-index:96;
+  position:fixed; left:18px; bottom:18px; z-index:170;
   width:min(400px, calc(100vw - 24px));
   height:min(600px, calc(100dvh - 36px));
   display:flex; flex-direction:column; overflow:hidden;
@@ -39,6 +39,17 @@
   transition:opacity .22s ease, transform .22s ease;
 }
 .vgai-panel.open{ opacity:1; transform:none; pointer-events:auto; }
+
+/* Cuando el chat está abierto, el flotante de WhatsApp se retira:
+   en móvil quedaba encima del botón de enviar y bloqueaba el clic */
+.whatsapp-float{
+  transition:transform .25s var(--ease-spring), box-shadow .25s, opacity .25s ease;
+}
+body.vgai-chat-open .whatsapp-float{
+  opacity:0; pointer-events:none;
+  transform:translateY(14px) scale(.9);
+  animation:none;
+}
 
 /* ── Cabecera ─────────────────────────────────────────────── */
 .vgai-head{

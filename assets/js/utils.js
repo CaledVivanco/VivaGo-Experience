@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', injectFooterSocialIcons);
 (function () {
   'use strict';
   /* Nombre con espacios/paréntesis → URL codificada.
-     Versión SOLO MELODÍA (voz cancelada agresivo M/S + resta de
-     centro) generada desde el original; el archivo con voz sigue
-     intacto en disco. Nombre distinto = sin caché del navegador. */
-  const SRC = 'index_files/' + encodeURIComponent('La Pollera Colora Solo Melodia.wav');
+     Versión SOLO MELODÍA por separación con IA real (Demucs/htdemucs):
+     la voz se extrajo como stem independiente — cero residuo vocal.
+     El original con voz sigue intacto en disco. */
+  const SRC = 'index_files/' + encodeURIComponent('La Pollera Colora Solo Melodia IA.wav');
   const VOLUMEN = 0.26;
   const FLAG = 'vgAmbiente';
   let audio = null;

@@ -928,3 +928,15 @@ body.home .nav:not(.scrolled) .nav-sound-btn{
   padding:12px 20px; border-radius:6px; font-weight:700; transition:top .2s;
 }
 .skip-link:focus{top:12px}
+
+@media (max-width:1080px){
+  html.vg-fit .selector-grid{grid-template-columns:repeat(4,1fr)}
+  html.vg-fit .sel-tile:nth-child(2){margin-top:26px}
+  html.vg-fit .sel-tile:nth-child(3){margin-top:52px}
+  html.vg-fit .sel-tile:nth-child(4){margin-top:78px}
+  html.vg-fit .mood-grid{grid-template-columns:repeat(4,1fr)}
+  html.vg-fit .footer-cols{grid-template-columns:1.35fr 1fr 1fr 1fr}
+  html.vg-fit .builder-steps{grid-template-columns:repeat(3,1fr)}
+  html.vg-fit .builder-result{grid-template-columns:1.1fr .9fr}
+  html.vg-fit .c-hero-instrument{display:block}
+}

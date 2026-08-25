@@ -1302,3 +1302,14 @@ body{ top:0 !important; position:static !important; }
   html.vg-fit .vgai-nav-btn span{display:inline}
   html.vg-fit .social-preview-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+html.vg-fit{--gutter:calc(clamp(20px,4.5vw,56px)*var(--vgs))}
+html.vg-fit .hero{min-height:min(calc(88svh*var(--vgs)),calc(780px*var(--vgs)))}
+html.vg-fit .hero h1{font-size:calc(clamp(2.7rem,6vw,4.6rem)*var(--vgs))}
+html.vg-fit .hero p.lead{font-size:calc(clamp(1.02rem,1.4vw,1.14rem)*var(--vgs))}
+html.vg-fit .section{padding:calc(clamp(72px,9vw,116px)*var(--vgs)) 0}
+html.vg-fit .section-head{margin-bottom:calc(clamp(34px,4vw,52px)*var(--vgs))}
+html.vg-fit .section-head h2{font-size:calc(clamp(2rem,4vw,2.9rem)*var(--vgs))}
+html.vg-fit .page-hero{padding:calc(clamp(120px,16vh,168px)*var(--vgs)) 0 calc(76px*var(--vgs))}
+html.vg-fit .page-hero h1{font-size:calc(clamp(2.4rem,5vw,3.6rem)*var(--vgs))}
+html.vg-fit .modal,html.vg-fit .promo-card{max-height:calc(92svh*var(--vgs))}

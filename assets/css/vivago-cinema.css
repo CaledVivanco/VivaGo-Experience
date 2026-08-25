@@ -940,3 +940,25 @@ body.home .nav:not(.scrolled) .nav-sound-btn{
   html.vg-fit .builder-result{grid-template-columns:1.1fr .9fr}
   html.vg-fit .c-hero-instrument{display:block}
 }
+
+html.vg-fit{--vgs:1.25}
+html.vg-fit .c-hero{min-height:calc(100svh*var(--vgs))}
+html.vg-fit .c-hero-title{font-size:calc(clamp(2.6rem,6.4vw,5.2rem)*var(--vgs))}
+html.vg-fit .swap .swap-hint{font-size:calc(clamp(.58rem,1vw,.72rem)*var(--vgs))}
+html.vg-fit .c-hero-sub{font-size:calc(clamp(1rem,1.35vw,1.12rem)*var(--vgs))}
+html.vg-fit .j-stage h2,html.vg-fit .j-stage h3{font-size:calc(clamp(1.9rem,4.4vw,3.3rem)*var(--vgs))}
+html.vg-fit .j-coords{font-size:calc(clamp(.8rem,1.6vw,1.05rem)*var(--vgs))}
+html.vg-fit .mapa-panel h3{font-size:calc(clamp(1.7rem,3vw,2.3rem)*var(--vgs))}
+html.vg-fit .manifiesto h2{font-size:calc(clamp(2.2rem,4.8vw,4rem)*var(--vgs))}
+html.vg-fit .palabras .word{font-size:calc(clamp(1.4rem,3vw,2.3rem)*var(--vgs))}
+html.vg-fit .day-plan h3{font-size:calc(clamp(1.7rem,3vw,2.4rem)*var(--vgs))}
+html.vg-fit .rental-head-big h2{font-size:calc(clamp(2.2rem,4.8vw,3.7rem)*var(--vgs))}
+html.vg-fit .concierge h2{font-size:calc(clamp(1.9rem,4vw,3rem)*var(--vgs))}
+html.vg-fit .final-cta{min-height:calc(70svh*var(--vgs))}
+html.vg-fit .final-cta h2{font-size:calc(clamp(2rem,4.6vw,3.5rem)*var(--vgs))}
+html.vg-fit .footer-giant{font-size:calc(clamp(2.2rem,5.6vw,5rem)*var(--vgs))}
+@media (min-width:961px){
+  html.vg-fit .journey{height:calc(360vh*var(--vgs))}
+  html.vg-fit .journey-stage{height:calc(100svh*var(--vgs))}
+  html.vg-fit .journey-rail{height:min(calc(300px*var(--vgs)),calc(40vh*var(--vgs)))}
+}
